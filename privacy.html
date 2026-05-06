@@ -1,15 +1,72 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Confidentialité - Service Express</title>
-    <style>body{font-family:sans-serif;max-width:800px;margin:40px auto;padding:20px;line-height:1.6;}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politique de confidentialité – Service Express</title>
+  <meta name="robots" content="noindex, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#04050f; --surface:rgba(255,255,255,0.04); --border:rgba(255,255,255,0.09); --purple:#a78bfa; --purple-dim:#818cf8; --text:#e8eaf6; --muted:#7c85a8; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'DM Sans',system-ui,sans-serif; background:var(--bg); color:var(--text); padding:0 16px 60px; }
+    body::before { content:''; position:fixed; inset:0; z-index:0; background:radial-gradient(ellipse 60% 50% at 20% 20%, rgba(99,60,180,0.15) 0%, transparent 70%); pointer-events:none; }
+    nav { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; padding:18px 0 24px; border-bottom:1px solid var(--border); margin-bottom:36px; }
+    .nav-brand { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--purple); text-decoration:none; }
+    .nav-back  { font-size:13px; color:var(--muted); text-decoration:none; }
+    .nav-back:hover { color:var(--purple); }
+    .container { max-width:720px; margin:0 auto; position:relative; z-index:1; }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:36px; }
+    h1 { font-family:'Syne',sans-serif; font-size:26px; font-weight:700; color:var(--purple); margin-bottom:8px; }
+    .subtitle { font-size:14px; color:var(--muted); margin-bottom:32px; }
+    h2 { font-size:16px; font-weight:500; color:var(--text); margin:28px 0 10px; }
+    p  { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:10px; }
+    ul { padding-left:18px; color:var(--muted); font-size:14px; line-height:2.1; margin-bottom:10px; }
+    a  { color:var(--purple-dim); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    footer { text-align:center; margin-top:40px; font-size:12px; color:var(--muted); position:relative; z-index:1; }
+  </style>
 </head>
 <body>
-    <h1>Politique de Confidentialité</h1>
-    <p>Chez Service Express, nous respectons votre vie privée. Ce site utilise des cookies via Google AdSense pour diffuser des annonces basées sur vos visites précédentes.</p>
-    <p>Google utilise le cookie DART pour lui permettre de diffuser des annonces en fonction de votre navigation sur nos services.</p>
-    <p>Vous pouvez choisir de désactiver les cookies via les options de votre navigateur ou en visitant les conditions de confidentialité du réseau publicitaire de Google.</p>
-    <p><a href="index.html">Retour à l'accueil</a></p>
+<div class="container">
+  <nav>
+    <a class="nav-brand" href="https://service-express.org">⚡ Service Express</a>
+    <a class="nav-back" href="https://service-express.org">← Retour au portail</a>
+  </nav>
+  <div class="card">
+    <h1>🔒 Politique de confidentialité</h1>
+    <p class="subtitle">service-express.org &nbsp;·&nbsp; Dernière mise à jour : janvier 2026</p>
+
+    <h2>1. Présentation</h2>
+    <p>Service Express est un portail d'outils gratuits en ligne. Cette page décrit les pratiques de confidentialité applicables au domaine principal service-express.org. Chaque sous-domaine (meteo, salaire, timer, age, etc.) dispose de sa propre politique de confidentialité accessible depuis son footer.</p>
+
+    <h2>2. Données collectées</h2>
+    <p>Le portail principal service-express.org n'intègre aucun formulaire ni fonctionnalité de collecte de données personnelles. Il s'agit d'une page de navigation vers les outils.</p>
+
+    <h2>3. Publicités (Google AdSense)</h2>
+    <p>Nous utilisons Google AdSense (ID éditeur : pub-1805732481707409) pour afficher des annonces publicitaires. Google peut déposer des cookies à des fins de personnalisation et de mesure des performances publicitaires.</p>
+    <ul>
+      <li>Gérer vos préférences : <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a></li>
+      <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Politique de confidentialité de Google</a></li>
+      <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Utilisation des données publicitaires par Google</a></li>
+    </ul>
+
+    <h2>4. Hébergement</h2>
+    <p>Ce site est hébergé sur GitHub Pages (GitHub, Inc., San Francisco, USA). GitHub peut collecter des métadonnées de connexion (adresse IP, navigateur, horodatage) conformément à sa <a href="https://docs.github.com/fr/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">politique de confidentialité</a>. Le nom de domaine est géré via Cloudflare, dont la politique est disponible sur <a href="https://www.cloudflare.com/fr-fr/privacypolicy/" target="_blank" rel="noopener">cloudflare.com</a>.</p>
+
+    <h2>5. Cookies</h2>
+    <p>Ce portail n'utilise pas de cookies propres. Les seuls cookies pouvant être déposés proviennent de Google AdSense. Vous pouvez les refuser ou les gérer depuis votre navigateur ou via <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.</p>
+
+    <h2>6. Droits RGPD</h2>
+    <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Aucune donnée personnelle n'étant collectée par Service Express, ces droits s'exercent directement auprès de Google pour les données publicitaires.</p>
+
+    <h2>7. Contact</h2>
+    <p>Pour toute question : <a href="https://service-express.org">service-express.org</a></p>
+  </div>
+  <footer>
+    <p>© 2026 Service Express &nbsp;·&nbsp; <a href="https://service-express.org">Retour au portail</a></p>
+  </footer>
+</div>
 </body>
 </html>

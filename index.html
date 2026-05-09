@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Service Express – Outils Gratuits en Ligne</title>
-  <meta name="description" content="Service Express : 12 outils gratuits sans inscription – météo locale, simulateur salaire, minuteur, calculateur d'âge, IMC, mise en demeure, bail de location, calcul préavis et plus.">
+  <meta name="description" content="Service Express : 13 outils gratuits sans inscription – météo locale, simulateur salaire, minuteur, calculateur d'âge, IMC, mise en demeure, bail de location, calcul préavis, coach sportif IA et plus.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://service-express.org/">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805732481707409" crossorigin="anonymous"></script>
@@ -46,7 +46,6 @@
       50% { opacity: var(--op); transform: scale(1.5); }
     }
 
-    /* Nébuleuse enrichie */
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: 0;
@@ -58,7 +57,6 @@
       pointer-events: none;
     }
 
-    /* Grain texture */
     body::after {
       content: '';
       position: fixed; inset: 0; z-index: 0;
@@ -112,14 +110,6 @@
     .stat-val { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: #fff; display: block; }
     .stat-label { font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
 
-    /* ══ DIVIDER ══ */
-    .divider {
-      display: flex; align-items: center; gap: 16px; margin: 60px 0 22px;
-      animation: fadeUp .8s .2s ease both;
-    }
-    .divider-line { flex: 1; height: 1px; background: var(--border); }
-    .divider-label { font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; }
-
     /* ══ CATEGORY LABEL ══ */
     .cat-label {
       font-size: 10px; font-weight: 500; color: var(--muted);
@@ -155,14 +145,12 @@
       cursor: pointer;
     }
 
-    /* Reflet top */
     .card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 1px;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.12) 40%, rgba(255,255,255,.06) 70%, transparent);
     }
 
-    /* Lueur colorée hover */
     .card::after {
       content: '';
       position: absolute; inset: 0; border-radius: 22px;
@@ -201,7 +189,7 @@
     }
     .card:hover .card-arrow { color: #fff; gap: 10px; }
 
-    /* Badge */
+    /* Badges */
     .badge-new {
       position: absolute; top: 14px; right: 14px;
       font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
@@ -215,6 +203,13 @@
       background: linear-gradient(135deg, #0f766e, #0891b2);
       color: #fff; padding: 3px 9px; border-radius: 100px;
       box-shadow: 0 0 12px rgba(8,145,178,0.4);
+    }
+    .badge-ia {
+      position: absolute; top: 14px; right: 14px;
+      font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      background: linear-gradient(135deg, #0f766e, #2dd4bf);
+      color: #fff; padding: 3px 9px; border-radius: 100px;
+      box-shadow: 0 0 12px rgba(45,212,191,0.4);
     }
 
     /* Lueurs individuelles */
@@ -230,6 +225,7 @@
     .c-miseendemeure { --glow: rgba(20,184,166,0.15); --glow-shadow: rgba(20,184,166,0.25); }
     .c-bail     { --glow: rgba(99,102,241,0.15);  --glow-shadow: rgba(99,102,241,0.25); }
     .c-preavis  { --glow: rgba(245,158,11,0.14);  --glow-shadow: rgba(245,158,11,0.22); }
+    .c-sport    { --glow: rgba(45,212,191,0.14);  --glow-shadow: rgba(45,212,191,0.22); }
 
     /* Carte featured (large) */
     .card-featured {
@@ -273,6 +269,7 @@
     .grid .card:nth-child(10) { animation: fadeUp .6s .93s ease both; }
     .grid .card:nth-child(11) { animation: fadeUp .6s 1.0s ease both; }
     .grid .card:nth-child(12) { animation: fadeUp .6s 1.07s ease both; }
+    .grid .card:nth-child(13) { animation: fadeUp .6s 1.14s ease both; }
   </style>
 </head>
 <body>
@@ -282,14 +279,14 @@
 <div class="wrapper">
 
   <header>
-    <div class="logo-badge"><span class="dot"></span> 12 outils gratuits · Sans inscription</div>
+    <div class="logo-badge"><span class="dot"></span> 13 outils gratuits · Sans inscription</div>
     <h1>
       <span class="word-service">Service</span><br>
       <span class="word-express">Express</span>
     </h1>
     <p class="tagline">Des outils utiles, rapides et sans installation — accessibles depuis n'importe quel appareil.</p>
     <div class="stats-bar">
-      <div class="stat"><span class="stat-val">12</span><span class="stat-label">Outils</span></div>
+      <div class="stat"><span class="stat-val">13</span><span class="stat-label">Outils</span></div>
       <div class="stat"><span class="stat-val">100%</span><span class="stat-label">Gratuit</span></div>
       <div class="stat"><span class="stat-val">0</span><span class="stat-label">Inscription</span></div>
       <div class="stat"><span class="stat-val">∞</span><span class="stat-label">Utilisation</span></div>
@@ -373,6 +370,22 @@
       <div class="card-title">Cycle de Sommeil</div>
       <div class="card-desc">Calculez vos horaires de réveil idéaux en fonction des cycles de 90 minutes.</div>
       <div class="card-arrow">Ouvrir <span>→</span></div>
+    </a>
+
+  </div>
+
+  <!-- SPORT & BIEN-ÊTRE -->
+  <div class="cat-label">🏃 Sport &amp; Bien-être</div>
+  <div class="grid">
+
+    <a href="https://sport.service-express.org" class="card c-sport card-featured" target="_blank" rel="noopener">
+      <span class="badge-ia">IA</span>
+      <div class="card-icon">🏃</div>
+      <div class="card-body">
+        <div class="card-title">Coach Sportif IA</div>
+        <div class="card-desc">Programme de reprise personnalisé par l'IA — running, musculation, foot, vélo, natation. Préparation 10 km, semi-marathon, marathon et ultra inclus.</div>
+        <div class="card-arrow">Ouvrir <span>→</span></div>
+      </div>
     </a>
 
   </div>

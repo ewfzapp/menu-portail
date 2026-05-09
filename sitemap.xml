@@ -97,4 +97,11 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Coach Sportif IA -->
+  <url>
+    <loc>https://sport.service-express.org/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>

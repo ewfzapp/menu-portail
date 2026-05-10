@@ -13,6 +13,13 @@
     <priority>0.2</priority>
   </url>
 
+  <!-- IA Gratuite -->
+  <url>
+    <loc>https://ia.service-express.org/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Météo -->
   <url>
     <loc>https://meteo.service-express.org/</loc>
@@ -76,6 +83,13 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Coach Sportif IA -->
+  <url>
+    <loc>https://sport.service-express.org/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Mise en demeure -->
   <url>
     <loc>https://miseendemeure.service-express.org/</loc>
@@ -93,13 +107,6 @@
   <!-- Calcul préavis -->
   <url>
     <loc>https://preavis.service-express.org/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Coach Sportif IA -->
-  <url>
-    <loc>https://sport.service-express.org/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

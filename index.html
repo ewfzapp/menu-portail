@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Service Express – Outils Gratuits en Ligne</title>
-  <meta name="description" content="Service Express : 13 outils gratuits sans inscription – météo locale, simulateur salaire, minuteur, calculateur d'âge, IMC, mise en demeure, bail de location, calcul préavis, coach sportif IA et plus.">
+  <meta name="description" content="Service Express : 14 outils gratuits sans inscription – météo locale, IA gratuite, simulateur salaire, minuteur, calculateur d'âge, IMC, mise en demeure, bail de location, calcul préavis, coach sportif IA et plus.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://service-express.org/">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805732481707409" crossorigin="anonymous"></script>
@@ -214,6 +214,7 @@
 
     /* Lueurs individuelles */
     .c-meteo    { --glow: rgba(96,165,250,0.15);  --glow-shadow: rgba(96,165,250,0.25); }
+    .c-ia       { --glow: rgba(125,249,194,0.15); --glow-shadow: rgba(125,249,194,0.25); }
     .c-salaire  { --glow: rgba(52,211,153,0.15);  --glow-shadow: rgba(52,211,153,0.25); }
     .c-timer    { --glow: rgba(251,191,36,0.14);  --glow-shadow: rgba(251,191,36,0.22); }
     .c-age      { --glow: rgba(244,114,182,0.15); --glow-shadow: rgba(244,114,182,0.25); }
@@ -270,6 +271,7 @@
     .grid .card:nth-child(11) { animation: fadeUp .6s 1.0s ease both; }
     .grid .card:nth-child(12) { animation: fadeUp .6s 1.07s ease both; }
     .grid .card:nth-child(13) { animation: fadeUp .6s 1.14s ease both; }
+    .grid .card:nth-child(14) { animation: fadeUp .6s 1.21s ease both; }
   </style>
 </head>
 <body>
@@ -279,14 +281,14 @@
 <div class="wrapper">
 
   <header>
-    <div class="logo-badge"><span class="dot"></span> 13 outils gratuits · Sans inscription - By Zizou</div>
+    <div class="logo-badge"><span class="dot"></span> 14 outils gratuits · Sans inscription</div>
     <h1>
       <span class="word-service">Service</span><br>
       <span class="word-express">Express</span>
     </h1>
     <p class="tagline">Des outils utiles, rapides et sans installation — accessibles depuis n'importe quel appareil.</p>
     <div class="stats-bar">
-      <div class="stat"><span class="stat-val">13</span><span class="stat-label">Outils</span></div>
+      <div class="stat"><span class="stat-val">14</span><span class="stat-label">Outils</span></div>
       <div class="stat"><span class="stat-val">100%</span><span class="stat-label">Gratuit</span></div>
       <div class="stat"><span class="stat-val">0</span><span class="stat-label">Inscription</span></div>
       <div class="stat"><span class="stat-val">∞</span><span class="stat-label">Utilisation</span></div>
@@ -298,15 +300,21 @@
   <main class="grid">
 
     <a href="https://meteo.service-express.org" class="card c-meteo" target="_blank" rel="noopener">
-      <span class="badge-new">Nouveau</span>
       <div class="card-icon">🌤️</div>
       <div class="card-title">Météo Locale</div>
       <div class="card-desc">Prévisions basées sur votre GPS — température, vent, UV, 7 jours.</div>
       <div class="card-arrow">Ouvrir <span>→</span></div>
     </a>
 
+    <a href="https://ia.service-express.org" class="card c-ia" target="_blank" rel="noopener">
+      <span class="badge-ia">IA</span>
+      <div class="card-icon">🤖</div>
+      <div class="card-title">IA Gratuite</div>
+      <div class="card-desc">Posez vos questions à une intelligence artificielle — réponses instantanées, sans compte.</div>
+      <div class="card-arrow">Ouvrir <span>→</span></div>
+    </a>
+
     <a href="https://timer.service-express.org" class="card c-timer" target="_blank" rel="noopener">
-      <span class="badge-new">Nouveau</span>
       <div class="card-icon">⏱️</div>
       <div class="card-title">Minuteur</div>
       <div class="card-desc">Compte à rebours, chronomètre avec tours et timer Pomodoro. Alarme sonore incluse.</div>
@@ -335,7 +343,6 @@
     </a>
 
     <a href="https://age.service-express.org" class="card c-age" target="_blank" rel="noopener">
-      <span class="badge-new">Nouveau</span>
       <div class="card-icon">🎂</div>
       <div class="card-title">Calculateur d'Âge</div>
       <div class="card-desc">Votre âge exact en jours, semaines, mois — signe astrologique et prochain anniversaire.</div>
@@ -349,7 +356,6 @@
   <div class="grid">
 
     <a href="https://salaire.service-express.org" class="card c-salaire card-featured" target="_blank" rel="noopener">
-      <span class="badge-new">Nouveau</span>
       <div class="card-icon">🧾</div>
       <div class="card-body">
         <div class="card-title">Simulateur Salaire Net / Brut</div>

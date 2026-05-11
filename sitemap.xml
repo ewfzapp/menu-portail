@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://service-express.org/</loc>
-    <lastmod>2026-05-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://service-express.org/</loc><lastmod>2026-05-11</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://bail.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://preavis.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://miseendemeure.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://salaire.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://meteo.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://ia.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://timer.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://mots.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://password.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://percent.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://age.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://devise.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://imc.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://sleep.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://sport.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://credit-immo.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://notaire.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://capacite-remboursement.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://loyer-m2.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
+  <url><loc>https://frais-km.service-express.org/</loc><lastmod>2026-05-11</lastmod></url>
 </urlset>

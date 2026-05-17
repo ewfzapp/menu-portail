@@ -3,505 +3,577 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Service Express – Outils Gratuits en Ligne</title>
-  <meta name="description" content="Service Express : 20 outils gratuits sans inscription – météo locale, IA gratuite, simulateur salaire, minuteur, calculateur d'âge, IMC, mise en demeure, bail de location, calcul préavis, coach sportif IA et plus.">
+  <title>Service Express – 14 Outils Gratuits en Ligne Sans Inscription</title>
+  <meta name="description" content="Service Express : 14 outils gratuits sans inscription – météo locale, IA gratuite, simulateur salaire net/brut, minuteur Pomodoro, calculateur d'âge, IMC, mise en demeure, bail de location, calcul préavis, coach sportif IA et plus. Rapide, sans compte, 100% gratuit.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://service-express.org/">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805732481707409" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #04050f;
-      --glass: rgba(255,255,255,0.04);
-      --glass-hover: rgba(255,255,255,0.07);
+      --bg: #02030d;
+      --surface: rgba(255,255,255,0.04);
+      --surface-hover: rgba(255,255,255,0.08);
       --border: rgba(255,255,255,0.08);
-      --border-hover: rgba(255,255,255,0.20);
-      --text: #e8eaf6;
-      --muted: #6b7494;
-      --font-display: 'Syne', sans-serif;
-      --font-body: 'DM Sans', sans-serif;
+      --border-hover: rgba(255,255,255,0.2);
+      --text: #e2e8f5;
+      --muted: #4a5270;
+      --muted2: #6b7a99;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-body);
+      font-family: 'Outfit', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* ══ FOND ══ */
-    #stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-    .star {
-      position: absolute; border-radius: 50%; background: #fff; opacity: 0;
-      animation: twinkle var(--dur) var(--delay) infinite;
+    /* ── FOND SPATIAL ── */
+    #cosmos {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      overflow: hidden;
     }
-    @keyframes twinkle {
-      0%,100% { opacity: 0; transform: scale(1); }
-      50% { opacity: var(--op); transform: scale(1.5); }
+    #star-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
     }
-
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse 70% 55% at 15% 15%, rgba(109,40,217,0.22) 0%, transparent 65%),
-        radial-gradient(ellipse 55% 45% at 85% 75%, rgba(30,80,200,0.15) 0%, transparent 65%),
-        radial-gradient(ellipse 45% 65% at 65% 5%, rgba(180,50,230,0.12) 0%, transparent 65%),
-        radial-gradient(ellipse 35% 35% at 50% 55%, rgba(20,180,160,0.06) 0%, transparent 60%);
-      pointer-events: none;
+    .nebula {
+      position: absolute; border-radius: 50%;
+      filter: blur(60px); opacity: 0.5;
     }
+    .n1 { width:600px;height:400px;top:-100px;left:-150px;background:radial-gradient(ellipse,rgba(109,40,217,0.18) 0%,transparent 70%); }
+    .n2 { width:500px;height:500px;top:40%;right:-180px;background:radial-gradient(ellipse,rgba(30,80,200,0.14) 0%,transparent 70%); }
+    .n3 { width:400px;height:600px;bottom:-100px;left:30%;background:radial-gradient(ellipse,rgba(180,50,230,0.1) 0%,transparent 70%); }
+    .n4 { width:350px;height:350px;bottom:0;left:-80px;background:radial-gradient(ellipse,rgba(20,160,140,0.1) 0%,transparent 70%); }
 
-    body::after {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; opacity: 0.4;
+    /* ── LAYOUT ── */
+    .wrap { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      padding: 80px 20px 60px;
+      animation: fadeUp 0.8s ease both;
     }
-
-    /* ══ LAYOUT ══ */
-    .wrapper { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 24px 100px; }
-
-    /* ══ HEADER ══ */
-    header { text-align: center; padding: 90px 20px 70px; animation: fadeUp .9s ease both; }
-
-    .logo-badge {
+    .badge {
       display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-body); font-size: 11px; font-weight: 500;
-      color: var(--muted); letter-spacing: .16em; text-transform: uppercase;
-      border: 1px solid var(--border); border-radius: 100px;
-      padding: 6px 18px; margin-bottom: 32px;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted2); border: 1px solid var(--border);
+      border-radius: 100px; padding: 5px 16px; margin-bottom: 28px;
       background: rgba(255,255,255,0.02);
     }
-    .dot { width: 6px; height: 6px; border-radius: 50%; background: #7c6ffa; display: inline-block; animation: pulse-dot 2s infinite; }
-    @keyframes pulse-dot { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(124,111,250,0.4);} 50%{opacity:.5;box-shadow:0 0 0 6px rgba(124,111,250,0);} }
+    .pulse { width:6px;height:6px;border-radius:50%;background:#7df9c2;animation:pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(125,249,194,0.4);} 50%{box-shadow:0 0 0 6px rgba(125,249,194,0);} }
 
     h1 {
-      font-family: var(--font-display);
-      font-size: clamp(52px, 9vw, 96px);
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
       font-weight: 800;
       line-height: 1.0;
-      letter-spacing: -.03em;
-      margin-bottom: 22px;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
     }
-    h1 .word-service { color: #fff; }
-    h1 .word-express {
-      background: linear-gradient(110deg, #c084fc 0%, #818cf8 35%, #38bdf8 70%, #f472b6 100%);
+    .h1-line1 { color: #fff; display: block; }
+    .h1-line2 {
+      display: block;
+      background: linear-gradient(100deg, #c084fc 0%, #818cf8 40%, #38bdf8 75%, #7df9c2 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       background-size: 200% auto;
-      animation: gradientShift 6s ease infinite;
+      animation: grad 6s ease infinite;
     }
-    @keyframes gradientShift { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
+    @keyframes grad { 0%,100%{background-position:0%} 50%{background-position:100%} }
 
-    .tagline { font-size: clamp(14px, 1.8vw, 17px); color: var(--muted); max-width: 460px; margin: 0 auto; line-height: 1.7; }
+    .tagline {
+      font-size: clamp(14px, 2vw, 17px);
+      color: var(--muted2); max-width: 500px; margin: 0 auto 36px;
+      line-height: 1.75; font-weight: 300;
+    }
 
-    /* ══ STATS BAR ══ */
-    .stats-bar {
-      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
-      margin: 40px 0 0;
-      animation: fadeUp .9s .15s ease both;
+    /* Stats */
+    .stats {
+      display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.1s ease both;
     }
     .stat { text-align: center; }
-    .stat-val { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: #fff; display: block; }
-    .stat-label { font-size: 11px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+    .stat-n { font-family:'Syne',sans-serif; font-size: 26px; font-weight: 800; color: #fff; display:block; }
+    .stat-l { font-size: 10px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; }
 
-    /* ══ CATEGORY LABEL ══ */
-    .cat-label {
-      font-size: 10px; font-weight: 500; color: var(--muted);
-      letter-spacing: .18em; text-transform: uppercase;
-      margin: 36px 0 14px 2px;
-      display: flex; align-items: center; gap: 10px;
-      animation: fadeUp .8s .25s ease both;
+    /* ── CATÉGORIES ── */
+    .cat-hdr {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin: 56px 0 20px;
+      display: flex; align-items: center; gap: 12px;
+      animation: fadeUp 0.7s 0.2s ease both;
     }
-    .cat-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .cat-hdr::after { content:''; flex:1; height:1px; background: var(--border); }
 
-    /* ══ GRILLE ══ */
+    /* ── GRILLE DE CARTES ── */
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
     }
-    @media (max-width: 800px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
 
-    /* ══ CARD ══ */
     .card {
       position: relative;
-      display: flex; flex-direction: column;
-      padding: 26px 22px 20px;
-      border-radius: 22px;
+      background: var(--surface);
       border: 1px solid var(--border);
-      background: var(--glass);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      border-radius: 16px;
+      padding: 22px 18px 18px;
       text-decoration: none; color: inherit;
-      transition: background .3s, border-color .3s, transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+      display: flex; flex-direction: column;
+      transition: background 0.3s, border-color 0.3s, transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s;
+      animation: fadeUp 0.6s ease both;
       overflow: hidden;
-      cursor: pointer;
     }
-
     .card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12) 40%, rgba(255,255,255,.06) 70%, transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1) 50%, transparent);
     }
-
     .card::after {
       content: '';
-      position: absolute; inset: 0; border-radius: 22px;
-      background: radial-gradient(circle at 25% 25%, var(--glow), transparent 60%);
-      opacity: 0; transition: opacity .4s;
-      pointer-events: none;
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 30%, var(--card-glow, rgba(255,255,255,0.05)), transparent 65%);
+      opacity: 0; transition: opacity 0.4s; pointer-events: none;
     }
-
     .card:hover {
-      background: var(--glass-hover);
+      background: var(--surface-hover);
       border-color: var(--border-hover);
-      transform: translateY(-6px) scale(1.018);
-      box-shadow: 0 24px 60px rgba(0,0,0,.55), 0 0 0 1px var(--border-hover), 0 0 40px -10px var(--glow-shadow, rgba(124,111,250,0.2));
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px var(--border-hover);
     }
     .card:hover::after { opacity: 1; }
 
-    .card-icon {
-      font-size: 34px; margin-bottom: 16px; line-height: 1;
-      display: inline-block;
-      filter: drop-shadow(0 0 8px var(--glow-shadow, rgba(255,255,255,0.1)));
-      transition: transform .3s cubic-bezier(.34,1.56,.64,1), filter .3s;
+    .card-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--card-color, #fff);
+      box-shadow: 0 0 8px var(--card-color, #fff);
+      margin-bottom: 14px;
+      flex-shrink: 0;
     }
-    .card:hover .card-icon { transform: scale(1.2) rotate(-5deg); filter: drop-shadow(0 0 14px var(--glow-shadow, rgba(255,255,255,0.2))); }
-
     .card-title {
-      font-family: var(--font-display);
-      font-size: 16px; font-weight: 700;
-      color: #fff; margin-bottom: 8px; line-height: 1.25;
+      font-family: 'Syne', sans-serif;
+      font-size: 14px; font-weight: 700; color: #fff;
+      margin-bottom: 7px; line-height: 1.3;
     }
-    .card-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; flex: 1; }
-
+    .card-desc {
+      font-size: 12px; color: var(--muted2);
+      line-height: 1.6; flex: 1; font-weight: 300;
+    }
     .card-arrow {
-      margin-top: 16px; font-size: 12px; color: var(--muted);
-      display: flex; align-items: center; gap: 5px;
-      transition: color .2s, gap .2s;
+      margin-top: 14px; font-size: 11px;
+      color: var(--muted); letter-spacing: 0.05em;
+      transition: color 0.2s, letter-spacing 0.2s;
+      display: flex; align-items: center; gap: 4px;
     }
-    .card:hover .card-arrow { color: #fff; gap: 10px; }
+    .card:hover .card-arrow { color: var(--card-color, #fff); letter-spacing: 0.12em; }
 
-    /* Badges */
-    .badge-new {
-      position: absolute; top: 14px; right: 14px;
-      font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      background: linear-gradient(135deg, #7c3aed, #4f46e5);
-      color: #fff; padding: 3px 9px; border-radius: 100px;
-      box-shadow: 0 0 12px rgba(124,58,237,0.4);
-    }
-    .badge-juridique {
-      position: absolute; top: 14px; right: 14px;
-      font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      background: linear-gradient(135deg, #0f766e, #0891b2);
-      color: #fff; padding: 3px 9px; border-radius: 100px;
-      box-shadow: 0 0 12px rgba(8,145,178,0.4);
-    }
-    .badge-ia {
-      position: absolute; top: 14px; right: 14px;
-      font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      background: linear-gradient(135deg, #0f766e, #2dd4bf);
-      color: #fff; padding: 3px 9px; border-radius: 100px;
-      box-shadow: 0 0 12px rgba(45,212,191,0.4);
+    /* Badge tag */
+    .tag {
+      position: absolute; top: 12px; right: 12px;
+      font-size: 8px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--card-color, #fff); opacity: 0.7;
+      border: 1px solid var(--card-color, #fff);
+      border-radius: 20px; padding: 2px 7px;
+      opacity: 0.55;
     }
 
-    /* Lueurs individuelles */
-    .c-meteo    { --glow: rgba(96,165,250,0.15);  --glow-shadow: rgba(96,165,250,0.25); }
-    .c-ia       { --glow: rgba(125,249,194,0.15); --glow-shadow: rgba(125,249,194,0.25); }
-    .c-salaire  { --glow: rgba(52,211,153,0.15);  --glow-shadow: rgba(52,211,153,0.25); }
-    .c-timer    { --glow: rgba(251,191,36,0.14);  --glow-shadow: rgba(251,191,36,0.22); }
-    .c-age      { --glow: rgba(244,114,182,0.15); --glow-shadow: rgba(244,114,182,0.25); }
-    .c-mots     { --glow: rgba(167,139,250,0.15); --glow-shadow: rgba(167,139,250,0.25); }
-    .c-imc      { --glow: rgba(34,211,238,0.14);  --glow-shadow: rgba(34,211,238,0.22); }
-    .c-password { --glow: rgba(248,113,113,0.14); --glow-shadow: rgba(248,113,113,0.22); }
-    .c-sleep    { --glow: rgba(129,140,248,0.15); --glow-shadow: rgba(129,140,248,0.25); }
-    .c-percent  { --glow: rgba(251,146,60,0.14);  --glow-shadow: rgba(251,146,60,0.22); }
-    .c-miseendemeure { --glow: rgba(20,184,166,0.15); --glow-shadow: rgba(20,184,166,0.25); }
-    .c-bail     { --glow: rgba(99,102,241,0.15);  --glow-shadow: rgba(99,102,241,0.25); }
-    .c-preavis  { --glow: rgba(245,158,11,0.14);  --glow-shadow: rgba(245,158,11,0.22); }
-    .c-sport    { --glow: rgba(45,212,191,0.14);  --glow-shadow: rgba(45,212,191,0.22); }
-
-    /* Carte featured (large) */
-    .card-featured {
+    /* Card large */
+    .card-wide {
       grid-column: span 2;
-      flex-direction: row; align-items: center; gap: 24px;
-      padding: 28px 28px;
+      flex-direction: row; align-items: center; gap: 18px; padding: 22px 24px;
     }
-    .card-featured .card-icon { font-size: 48px; margin-bottom: 0; flex-shrink: 0; }
-    .card-featured .card-body { flex: 1; }
-    .card-featured .card-title { font-size: 20px; }
-    .card-featured .card-desc { font-size: 13px; }
-    @media (max-width: 800px) { .card-featured { grid-column: span 1; flex-direction: column; } }
+    .card-wide .card-body { flex: 1; }
+    .card-wide .card-dot { width: 10px; height: 10px; flex-shrink: 0; margin-bottom: 0; }
+    .card-wide .card-title { font-size: 16px; }
+    .card-wide .card-desc { font-size: 12.5px; }
+    @media(max-width:540px){ .card-wide{ grid-column:span 1; flex-direction:column; } }
 
-    /* ══ FOOTER ══ */
+    /* ── SECTION CONTENU (AdSense) ── */
+    .content-section {
+      margin-top: 80px;
+      padding-top: 60px;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .content-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700; color: #fff;
+      margin-bottom: 16px; letter-spacing: -0.02em;
+    }
+    .content-section p {
+      color: var(--muted2); font-size: 15px;
+      line-height: 1.8; max-width: 780px;
+      margin-bottom: 16px; font-weight: 300;
+    }
+    .content-section strong { color: var(--text); font-weight: 500; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px; margin-top: 36px;
+    }
+    .feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .feature-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px; font-weight: 700; color: #fff;
+      margin-bottom: 8px;
+    }
+    .feature-text {
+      font-size: 12.5px; color: var(--muted2);
+      line-height: 1.6; font-weight: 300;
+    }
+    .feature-accent { color: var(--muted2); font-size: 18px; margin-bottom: 10px; }
+
+    .faq { margin-top: 56px; }
+    .faq h2 { margin-bottom: 24px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .faq-q {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px; font-weight: 600; color: #fff;
+      margin-bottom: 10px;
+    }
+    .faq-a {
+      font-size: 14px; color: var(--muted2);
+      line-height: 1.7; font-weight: 300;
+    }
+
+    /* ── FOOTER ── */
     footer {
       position: relative; z-index: 1;
       text-align: center; padding: 40px 24px;
       border-top: 1px solid var(--border);
       font-size: 12px; color: var(--muted);
-      animation: fadeUp .8s .5s ease both;
+      margin-top: 64px;
     }
-    footer a { color: var(--muted); text-decoration: none; margin: 0 12px; transition: color .2s; }
-    footer a:hover { color: #a78bfa; }
-    .footer-logo { font-family: var(--font-display); font-size: 18px; color: #fff; margin-bottom: 10px; display: block; }
+    footer a { color: var(--muted); text-decoration: none; margin: 0 10px; transition: color 0.2s; }
+    footer a:hover { color: #c084fc; }
+    .footer-logo { font-family:'Syne',sans-serif; font-size:16px; color:#fff; display:block; margin-bottom:8px; }
 
-    /* ══ ANIMATIONS ══ */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0); }
     }
 
-    .grid .card:nth-child(1)  { animation: fadeUp .6s .30s ease both; }
-    .grid .card:nth-child(2)  { animation: fadeUp .6s .37s ease both; }
-    .grid .card:nth-child(3)  { animation: fadeUp .6s .44s ease both; }
-    .grid .card:nth-child(4)  { animation: fadeUp .6s .51s ease both; }
-    .grid .card:nth-child(5)  { animation: fadeUp .6s .58s ease both; }
-    .grid .card:nth-child(6)  { animation: fadeUp .6s .65s ease both; }
-    .grid .card:nth-child(7)  { animation: fadeUp .6s .72s ease both; }
-    .grid .card:nth-child(8)  { animation: fadeUp .6s .79s ease both; }
-    .grid .card:nth-child(9)  { animation: fadeUp .6s .86s ease both; }
-    .grid .card:nth-child(10) { animation: fadeUp .6s .93s ease both; }
-    .grid .card:nth-child(11) { animation: fadeUp .6s 1.0s ease both; }
-    .grid .card:nth-child(12) { animation: fadeUp .6s 1.07s ease both; }
-    .grid .card:nth-child(13) { animation: fadeUp .6s 1.14s ease both; }
-    .grid .card:nth-child(14) { animation: fadeUp .6s 1.21s ease both; }
-      .ad-placeholder { background: var(--glass); border: 1px dashed var(--border); border-radius: 22px; margin: 20px auto; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; min-height: 90px; } .ad-inline { grid-column: 1 / -1; height: 100px; }</style>
+    /* délais d'apparition des cartes */
+    .grid .card:nth-child(1)  { animation-delay:.15s }
+    .grid .card:nth-child(2)  { animation-delay:.20s }
+    .grid .card:nth-child(3)  { animation-delay:.25s }
+    .grid .card:nth-child(4)  { animation-delay:.30s }
+    .grid .card:nth-child(5)  { animation-delay:.35s }
+    .grid .card:nth-child(6)  { animation-delay:.40s }
+    .grid .card:nth-child(7)  { animation-delay:.45s }
+    .grid .card:nth-child(8)  { animation-delay:.50s }
+    .grid .card:nth-child(9)  { animation-delay:.55s }
+    .grid .card:nth-child(10) { animation-delay:.60s }
+    .grid .card:nth-child(11) { animation-delay:.65s }
+    .grid .card:nth-child(12) { animation-delay:.70s }
+    .grid .card:nth-child(13) { animation-delay:.75s }
+    .grid .card:nth-child(14) { animation-delay:.80s }
+  </style>
 </head>
 <body>
 
-<div id="stars"></div>
+<!-- Fond spatial -->
+<div id="cosmos">
+  <canvas id="star-canvas"></canvas>
+  <div class="nebula n1"></div>
+  <div class="nebula n2"></div>
+  <div class="nebula n3"></div>
+  <div class="nebula n4"></div>
+</div>
 
-<div class="wrapper">
+<div class="wrap">
 
+  <!-- HEADER -->
   <header>
-    <div class="logo-badge"><span class="dot"></span> 20 outils gratuits · Sans inscription</div>
+    <div class="badge"><span class="pulse"></span> 14 outils · Gratuit · Sans inscription</div>
     <h1>
-      <span class="word-service">Service</span><br>
-      <span class="word-express">Express</span>
+      <span class="h1-line1">Service</span>
+      <span class="h1-line2">Express</span>
     </h1>
-    <p class="tagline">Des outils utiles, rapides et sans installation — accessibles depuis n'importe quel appareil.</p>
-    <div class="stats-bar">
-      <div class="stat"><span class="stat-val">20</span><span class="stat-label">Outils</span></div>
-      <div class="stat"><span class="stat-val">200%</span><span class="stat-label">Gratuit</span></div>
-      <div class="stat"><span class="stat-val">0</span><span class="stat-label">Inscription</span></div>
-      <div class="stat"><span class="stat-val">∞</span><span class="stat-label">Utilisation</span></div>
+    <p class="tagline">Des outils du quotidien — météo, finances, santé, juridique, IA — accessibles en un clic, sans créer de compte.</p>
+    <div class="stats">
+      <div class="stat"><span class="stat-n">14</span><span class="stat-l">Outils</span></div>
+      <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Gratuit</span></div>
+      <div class="stat"><span class="stat-n">0</span><span class="stat-l">Inscription</span></div>
+      <div class="stat"><span class="stat-n">∞</span><span class="stat-l">Utilisation</span></div>
     </div>
-  </header><div class="ad-placeholder">Emplacement Publicitaire Principal</div>
+  </header>
 
   <!-- OUTILS DU QUOTIDIEN -->
-  <div class="cat-label">🛠 Outils du quotidien</div>
-  <main class="grid">
+  <div class="cat-hdr">Outils du quotidien</div>
+  <div class="grid">
 
-    <a href="https://meteo.service-express.org" class="card c-meteo" target="_blank" rel="noopener">
-      <div class="card-icon">🌤️</div>
+    <a href="https://meteo.service-express.org" class="card" target="_blank" rel="noopener"
+       style="--card-color:#60a5fa;--card-glow:rgba(96,165,250,0.12)">
+      <div class="card-dot"></div>
       <div class="card-title">Météo Locale</div>
-      <div class="card-desc">Prévisions basées sur votre GPS — température, vent, UV, 7 jours.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
+      <div class="card-desc">Prévisions météo basées sur votre position GPS — température, vent, indice UV et prévisions sur 7 jours.</div>
+      <div class="card-arrow">Ouvrir →</div>
     </a>
 
-    <a href="https://ia.service-express.org" class="card c-ia" target="_blank" rel="noopener">
-      <span class="badge-ia">IA</span>
-      <div class="card-icon">🤖</div>
+    <a href="https://ia.service-express.org" class="card" target="_blank" rel="noopener"
+       style="--card-color:#7df9c2;--card-glow:rgba(125,249,194,0.12)">
+      <div class="tag">IA</div>
+      <div class="card-dot"></div>
       <div class="card-title">IA Gratuite</div>
-      <div class="card-desc">Posez vos questions à une intelligence artificielle — réponses instantanées, sans compte.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
+      <div class="card-desc">Posez toutes vos questions à une intelligence artificielle — réponses instantanées, sans compte, sans abonnement.</div>
+      <div class="card-arrow">Ouvrir →</div>
     </a>
 
-    <a href="https://timer.service-express.org" class="card c-timer" target="_blank" rel="noopener">
-      <div class="card-icon">⏱️</div>
+    <a href="https://timer.service-express.org" class="card" target="_blank" rel="noopener"
+       style="--card-color:#fbbf24;--card-glow:rgba(251,191,36,0.1)">
+      <div class="card-dot"></div>
       <div class="card-title">Minuteur</div>
-      <div class="card-desc">Compte à rebours, chronomètre avec tours et timer Pomodoro. Alarme sonore incluse.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
+      <div class="card-desc">Compte à rebours, chronomètre avec tours, timer Pomodoro intégré et alarme sonore personnalisable.</div>
+      <div class="card-arrow">Ouvrir →</div>
     </a>
 
-    <a href="https://mots.service-express.org" class="card c-mots" target="_blank" rel="noopener">
-      <div class="card-icon">📝</div>
+    <a href="https://mots.service-express.org" class="card" target="_blank" rel="noopener"
+       style="--card-color:#a78bfa;--card-glow:rgba(167,139,250,0.12)">
+      <div class="card-dot"></div>
       <div class="card-title">Compteur de Mots</div>
-      <div class="card-desc">Analysez vos textes en temps réel — mots, caractères, limites réseaux sociaux.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
+      <div class="card-desc">Analysez vos textes en temps réel — mots, caractères, lisibilité et limites des principaux réseaux sociaux.</div>
+      <div class="card-arrow">Ouvrir →</div>
     </a>
 
-    <a href="https://password.service-express.org" class="card c-password" target="_blank" rel="noopener">
-      <div class="card-icon">🔐</div>
+    <a href="https://password.service-express.org" class="card" target="_blank" rel="noopener"
+       style="--card-color:#f87171;--card-glow:rgba(248,113,113,0.1)">
+      <div class="card-dot"></div>
       <div class="card-title">Générateur de Mots de Passe</div>
-      <div class="card-desc">Créez des mots de passe ultra-sécurisés personnalisables en un clic.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
+      <div class="card-desc">Créez des mots de passe forts et personnalisables en un clic — longueur, symboles, chiffres, majuscules.</div>
+      <div class="card-arrow">Ouvrir →</div>
     </a>
 
-    <a href="https://percent.service-express.org" class="card c-percent" target="_blank" rel="noopener">
-      <div class="card-icon">📊</div>
+    <a href="https://percent.service-express.org" class="card" target="_blank" rel="noopener"
+       style="--card-color:#fb923c;--card-glow:rgba(251,146,60,0.1)">
+      <div class="card-dot"></div>
       <div class="card-title">Calculateur de %</div>
- 
-    <a href="https://credit-immo.service-express.org" class="card c-salaire" target="_blank" rel="noopener">
-      <div class="card-icon">🏦</div>
-      <div class="card-title">Crédit Immobilier</div>
- 
-    <a href="https://notaire.service-express.org" class="card c-preavis" target="_blank" rel="noopener">
-      <div class="card-icon">📜</div>
-      <div class="card-title">Frais de Notaire</div>
-      <div class="card-desc">Estimez les frais d acquisition pour votre achat dans le neuf ou l ancien.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
-    </a>
-      <div class="card-desc">Calculez votre capacité d emprunt selon le taux d endettement légal (35%).</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
-    </a>
-      <div class="card-desc">Calculez remises, taxes, augmentations et variations de valeurs en quelques secondes.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
+      <div class="card-desc">Calculez remises, taxes, TVA, augmentations de salaire et variations de valeurs en quelques secondes.</div>
+      <div class="card-arrow">Ouvrir →</div>
     </a>
 
-    <a href="https://age.service-express.org" class="card c-age" target="_blank" rel="noopener">
-      <div class="card-icon">🎂</div>
+    <a href="https://age.service-express.org" class="card" target="_blank" rel="noopener"
+       style="--card-color:#f472b6;--card-glow:rgba(244,114,182,0.1)">
+      <div class="card-dot"></div>
       <div class="card-title">Calculateur d'Âge</div>
-      <div class="card-desc">Votre âge exact en jours, semaines, mois — signe astrologique et prochain anniversaire.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
+      <div class="card-desc">Calculez votre âge exact en jours, semaines et mois — signe astrologique et prochain anniversaire inclus.</div>
+      <div class="card-arrow">Ouvrir →</div>
     </a>
 
-    <a href="https://capacite-remboursement.service-express.org" class="card c-meteo" target="_blank" rel="noopener">
-      <div class="card-icon">🏦</div>
-      <div class="card-title">Capacité Remboursement</div>
-      <div class="card-desc">Calculez vos mensualités de prêt immo.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
-    </a>
-    <a href="https://loyer-m2.service-express.org" class="card c-bail" target="_blank" rel="noopener">
-      <div class="card-icon">🏢</div>
-      <div class="card-title">Loyer au m²</div>
-      <div class="card-desc">Vérifiez la cohérence de votre loyer.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
-    </a>
-    <a href="https://frais-km.service-express.org" class="card c-percent" target="_blank" rel="noopener">
-      <div class="card-icon">🚗</div>
-      <div class="card-title">Indemnités Kilométriques</div>
-      <div class="card-desc">Barème fiscal des frais de transport.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
-    </a>
-    <a href="https://tva.service-express.org" class="card c-ia" target="_blank" rel="noopener">
-      <div class="card-icon">💸</div>
-      <div class="card-title">Calculateur TVA</div>
-      <div class="card-desc">Calculez montants HT, TTC et TVA (20%, 10%, 5.5%).</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
-    </a>
-  <div class="ad-placeholder ad-inline">Publicité Entre Catégories</div></main>
+  </div>
 
   <!-- SANTÉ & FINANCE -->
-  <div class="cat-label">💶 Santé &amp; Finance</div>
+  <div class="cat-hdr">Santé &amp; Finance</div>
   <div class="grid">
 
-    <a href="https://salaire.service-express.org" class="card c-salaire card-featured" target="_blank" rel="noopener">
-      <div class="card-icon">🧾</div>
+    <a href="https://salaire.service-express.org" class="card card-wide" target="_blank" rel="noopener"
+       style="--card-color:#34d399;--card-glow:rgba(52,211,153,0.12)">
+      <div class="card-dot"></div>
       <div class="card-body">
         <div class="card-title">Simulateur Salaire Net / Brut</div>
-        <div class="card-desc">Convertissez votre salaire selon les barèmes URSSAF 2026. Cadre, non-cadre, temps partiel — résultat instantané.</div>
-        <div class="card-arrow">Ouvrir <span>→</span></div>
+        <div class="card-desc">Convertissez votre salaire brut en net (ou inversement) selon les barèmes URSSAF 2026. Cadre, non-cadre, temps partiel — résultat instantané sans inscription.</div>
+        <div class="card-arrow">Ouvrir →</div>
       </div>
     </a>
 
-    <a href="https://imc.service-express.org" class="card c-imc" target="_blank" rel="noopener">
-      <div class="card-icon">⚖️</div>
+    <a href="https://imc.service-express.org" class="card" target="_blank" rel="noopener"
+       style="--card-color:#22d3ee;--card-glow:rgba(34,211,238,0.1)">
+      <div class="card-dot"></div>
       <div class="card-title">Calculateur IMC</div>
-      <div class="card-desc">Calculez votre indice de masse corporelle selon les seuils OMS.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
+      <div class="card-desc">Calculez votre indice de masse corporelle selon les seuils OMS. Interprétation claire et conseils adaptés.</div>
+      <div class="card-arrow">Ouvrir →</div>
     </a>
 
-    <a href="https://sleep.service-express.org" class="card c-sleep" target="_blank" rel="noopener">
-      <div class="card-icon">🌙</div>
+    <a href="https://sleep.service-express.org" class="card" target="_blank" rel="noopener"
+       style="--card-color:#818cf8;--card-glow:rgba(129,140,248,0.12)">
+      <div class="card-dot"></div>
       <div class="card-title">Cycle de Sommeil</div>
-      <div class="card-desc">Calculez vos horaires de réveil idéaux en fonction des cycles de 90 minutes.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
+      <div class="card-desc">Calculez vos horaires de réveil idéaux basés sur les cycles de sommeil de 90 minutes pour vous lever reposé.</div>
+      <div class="card-arrow">Ouvrir →</div>
     </a>
 
   </div>
 
-  <!-- SPORT & BIEN-ÊTRE -->
-  <div class="cat-label">🏃 Sport &amp; Bien-être</div>
+  <!-- SPORT -->
+  <div class="cat-hdr">Sport &amp; Bien-être</div>
   <div class="grid">
 
-    <a href="https://sport.service-express.org" class="card c-sport card-featured" target="_blank" rel="noopener">
-      <span class="badge-ia">IA</span>
-      <div class="card-icon">🏃</div>
+    <a href="https://sport.service-express.org" class="card card-wide" target="_blank" rel="noopener"
+       style="--card-color:#2dd4bf;--card-glow:rgba(45,212,191,0.1)">
+      <div class="tag">IA</div>
+      <div class="card-dot"></div>
       <div class="card-body">
         <div class="card-title">Coach Sportif IA</div>
-        <div class="card-desc">Programme de reprise personnalisé par l'IA — running, musculation, foot, vélo, natation. Préparation 10 km, semi-marathon, marathon et ultra inclus.</div>
-        <div class="card-arrow">Ouvrir <span>→</span></div>
+        <div class="card-desc">Générez un programme d'entraînement personnalisé grâce à l'intelligence artificielle — running, musculation, vélo, natation. Préparation 10 km, semi-marathon, marathon et ultra trail inclus.</div>
+        <div class="card-arrow">Ouvrir →</div>
       </div>
     </a>
 
   </div>
 
-  <!-- OUTILS JURIDIQUES -->
-  <div class="cat-label">⚖️ Juridique &amp; RH</div>
+  <!-- JURIDIQUE -->
+  <div class="cat-hdr">Juridique &amp; RH</div>
   <div class="grid">
 
-    <a href="https://miseendemeure.service-express.org" class="card c-miseendemeure card-featured" target="_blank" rel="noopener">
-      <span class="badge-juridique">Juridique</span>
-      <div class="card-icon">📨</div>
+    <a href="https://miseendemeure.service-express.org" class="card card-wide" target="_blank" rel="noopener"
+       style="--card-color:#14b8a6;--card-glow:rgba(20,184,166,0.1)">
+      <div class="tag">Juridique</div>
+      <div class="card-dot"></div>
       <div class="card-body">
         <div class="card-title">Mise en Demeure</div>
-        <div class="card-desc">Générez votre lettre juridique en 2 minutes — loyer impayé, travaux, remboursement. Téléchargement PDF immédiat.</div>
-        <div class="card-arrow">Ouvrir <span>→</span></div>
+        <div class="card-desc">Rédigez votre lettre de mise en demeure juridique en 2 minutes — loyer impayé, travaux non effectués, remboursement refusé. Téléchargement PDF immédiat, conforme au droit français.</div>
+        <div class="card-arrow">Ouvrir →</div>
       </div>
     </a>
 
-    <a href="https://bail.service-express.org" class="card c-bail" target="_blank" rel="noopener">
-      <span class="badge-juridique">Juridique</span>
-      <div class="card-icon">🏠</div>
+    <a href="https://bail.service-express.org" class="card" target="_blank" rel="noopener"
+       style="--card-color:#6366f1;--card-glow:rgba(99,102,241,0.12)">
+      <div class="tag">Juridique</div>
+      <div class="card-dot"></div>
       <div class="card-title">Bail de Location</div>
-      <div class="card-desc">Rédigez votre contrat de bail meublé ou non meublé, conforme loi Alur 2026.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
+      <div class="card-desc">Rédigez votre contrat de bail meublé ou non meublé, conforme à la loi Alur 2026. Export PDF inclus.</div>
+      <div class="card-arrow">Ouvrir →</div>
     </a>
 
-    <a href="https://preavis.service-express.org" class="card c-preavis" target="_blank" rel="noopener">
-      <span class="badge-juridique">Juridique</span>
-      <div class="card-icon">💼</div>
+    <a href="https://preavis.service-express.org" class="card" target="_blank" rel="noopener"
+       style="--card-color:#f59e0b;--card-glow:rgba(245,158,11,0.1)">
+      <div class="tag">Juridique</div>
+      <div class="card-dot"></div>
       <div class="card-title">Calcul Préavis &amp; Indemnités</div>
-      <div class="card-desc">Durée de préavis, date de fin de contrat et indemnités légales selon votre ancienneté.</div>
-      <div class="card-arrow">Ouvrir <span>→</span></div>
+      <div class="card-desc">Calculez la durée de votre préavis, la date de fin de contrat et les indemnités légales selon votre ancienneté.</div>
+      <div class="card-arrow">Ouvrir →</div>
     </a>
 
   </div>
 
-</div>
+  <!-- SECTION CONTENU RICHE -->
+  <div class="content-section">
+    <h2>Des outils du quotidien, enfin réunis en un seul endroit</h2>
+    <p>
+      <strong>Service Express</strong> est un portail d'outils gratuits conçu pour répondre aux besoins les plus courants du quotidien, sans friction : pas d'inscription, pas d'abonnement, pas d'installation. Chaque outil fonctionne directement dans votre navigateur, sur ordinateur comme sur mobile.
+    </p>
+    <p>
+      Que vous souhaitiez <strong>convertir un salaire brut en net</strong> avant un entretien d'embauche, <strong>rédiger une mise en demeure</strong> à un locataire, <strong>calculer vos cycles de sommeil</strong> pour mieux récupérer ou <strong>générer un programme sportif personnalisé</strong>, Service Express met à votre disposition l'outil adapté en quelques secondes.
+    </p>
+    <p>
+      Notre <strong>service d'IA gratuite</strong> vous permet de poser n'importe quelle question à une intelligence artificielle de pointe, sans créer de compte ni saisir de carte bancaire. Idéal pour obtenir une explication, rédiger un texte, ou simplement satisfaire une curiosité.
+    </p>
+
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-accent">⚡</div>
+        <div class="feature-title">Résultats instantanés</div>
+        <div class="feature-text">Tous les calculs et générateurs affichent leur résultat en temps réel, sans rechargement de page ni attente.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-accent">🔒</div>
+        <div class="feature-title">Respect de la vie privée</div>
+        <div class="feature-text">Aucun compte créé, aucune donnée personnelle stockée. Vos informations restent sur votre appareil.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-accent">📱</div>
+        <div class="feature-title">100% responsive</div>
+        <div class="feature-text">Chaque outil est optimisé pour mobile, tablette et ordinateur. Accès depuis n'importe quel appareil.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-accent">🇫🇷</div>
+        <div class="feature-title">Adapté au droit français</div>
+        <div class="feature-text">Les outils juridiques et financiers sont basés sur la législation française et les barèmes en vigueur en 2026.</div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq">
+      <h2>Questions fréquentes</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Les outils Service Express sont-ils vraiment gratuits ?</div>
+        <div class="faq-a">Oui, tous les outils du portail sont entièrement gratuits et sans limitation d'utilisation. Aucune inscription n'est requise. Le site est financé par la publicité Google AdSense.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Mes données personnelles sont-elles collectées ?</div>
+        <div class="faq-a">Non. Chaque outil fonctionne directement dans votre navigateur. Aucune donnée personnelle identifiable n'est collectée ou stockée par Service Express. Les questions posées à l'IA sont transmises de façon anonyme et ne sont pas conservées.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Le simulateur de salaire est-il fiable ?</div>
+        <div class="faq-a">Notre simulateur salaire net/brut est basé sur les barèmes de cotisations sociales URSSAF en vigueur en 2026. Il couvre les régimes cadre et non-cadre, ainsi que le temps partiel. Il donne une estimation précise à titre indicatif ; pour une situation complexe, consultez un expert-comptable ou votre service RH.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">La mise en demeure générée a-t-elle une valeur juridique ?</div>
+        <div class="faq-a">Le modèle de lettre de mise en demeure proposé est conforme aux exigences du droit français. Pour lui donner une valeur probante maximale, envoyez-la en lettre recommandée avec accusé de réception. Pour les litiges complexes, l'avis d'un avocat reste recommandé.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Combien de questions puis-je poser à l'IA gratuite ?</div>
+        <div class="faq-a">Le service d'IA gratuite permet 20 questions par tranche de 24 heures. Ce quota est géré localement dans votre navigateur, sans création de compte. Il permet de garantir la disponibilité du service pour tous les utilisateurs.</div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /wrap -->
 
 <footer>
   <span class="footer-logo">Service Express</span>
   <p>© 2026 &nbsp;·&nbsp;
-    <a href="https://service-express.org/privacy.html">Confidentialité</a> &nbsp;·&nbsp; <a href="legal.html">Mentions Légales</a>
+    <a href="https://service-express.org/privacy.html">Confidentialité</a>
   </p>
 </footer>
 
 <script>
-/* Étoiles */
-const container = document.getElementById('stars');
-for (let i = 0; i < 150; i++) {
-  const s = document.createElement('div');
-  s.className = 'star';
-  const size = Math.random() * 2.2 + 0.6;
-  s.style.cssText = `
-    width:${size}px; height:${size}px;
-    top:${Math.random()*100}%;
-    left:${Math.random()*100}%;
-    --dur:${(Math.random()*5+3).toFixed(1)}s;
-    --delay:${(Math.random()*6).toFixed(1)}s;
-    --op:${(Math.random()*.55+.1).toFixed(2)};
-  `;
-  container.appendChild(s);
-}
+/* ── Étoiles animées ── */
+(function(){
+  const canvas = document.getElementById('star-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, stars=[], t=0;
+  function resize(){
+    W=canvas.offsetWidth; H=canvas.offsetHeight;
+    canvas.width=W; canvas.height=H;
+    stars=[];
+    for(let i=0;i<200;i++) stars.push({
+      x:Math.random()*W, y:Math.random()*H,
+      r:Math.random()*1.3+0.2,
+      op:Math.random()*0.6+0.08,
+      sp:Math.random()*5+3
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    stars.forEach(s=>{
+      const op=s.op*(0.5+0.5*Math.sin(t/s.sp/7));
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${op})`; ctx.fill();
+    });
+    t++; requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize(); draw();
+})();
 
-/* Effet curseur lumineux sur les cards */
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
-    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
-    card.style.setProperty('--mx', x + '%');
-    card.style.setProperty('--my', y + '%');
-  });
+/* ── Effet parallaxe léger sur les nébuleuses au scroll ── */
+window.addEventListener('scroll', ()=>{
+  const y = window.scrollY;
+  document.querySelector('.n1').style.transform = `translateY(${y*0.12}px)`;
+  document.querySelector('.n2').style.transform = `translateY(${-y*0.08}px)`;
 });
 </script>
 

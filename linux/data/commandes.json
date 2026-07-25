@@ -1,0 +1,1025 @@
+[
+  {
+    "cmd": "ls",
+    "url": "commandes/ls.html",
+    "categorie": "navigation",
+    "desc": "Liste le contenu d'un dossier. La commande qu'on tape 100 fois par jour.",
+    "motsCles": "lister voir dossier fichiers répertoire contenu",
+    "title": "Lister le contenu d'un dossier",
+    "tags": [
+      "lister",
+      "fichiers",
+      "dossier",
+      "répertoire",
+      "voir",
+      "afficher"
+    ]
+  },
+  {
+    "cmd": "cd",
+    "url": "commandes/cd.html",
+    "categorie": "navigation",
+    "desc": "Change de répertoire. Se déplacer dans l'arborescence de fichiers.",
+    "motsCles": "naviguer changer dossier répertoire aller déplacer",
+    "title": "Naviguer entre les dossiers",
+    "tags": [
+      "naviguer",
+      "dossier",
+      "changer",
+      "répertoire",
+      "aller"
+    ]
+  },
+  {
+    "cmd": "pwd",
+    "url": "commandes/pwd.html",
+    "categorie": "navigation",
+    "desc": "Affiche le chemin complet du dossier courant. \"Où suis-je ?\"",
+    "motsCles": "où suis-je position chemin répertoire courant",
+    "title": "Savoir où je suis",
+    "tags": [
+      "position",
+      "où",
+      "chemin",
+      "répertoire",
+      "courant"
+    ]
+  },
+  {
+    "cmd": "tree",
+    "url": "commandes/tree.html",
+    "categorie": "navigation",
+    "desc": "Affiche l'arborescence complète sous forme d'arbre visuel.",
+    "motsCles": "afficher arborescence dossiers",
+    "title": "Affiche l'arborescence complète sous forme d'arbre visuel.",
+    "tags": [
+      "navigation"
+    ]
+  },
+  {
+    "cmd": "pushd",
+    "url": "commandes/pushd.html",
+    "categorie": "navigation",
+    "desc": "Change de dossier en mémorisant le précédent. Comme un historique de navigation.",
+    "motsCles": "empiler répertoires navigation",
+    "title": "Change de dossier en mémorisant le précédent. Comme un historique de navigation.",
+    "tags": [
+      "navigation"
+    ]
+  },
+  {
+    "cmd": "cp",
+    "url": "commandes/cp.html",
+    "categorie": "fichiers",
+    "desc": "Copie des fichiers ou des dossiers. Comme Ctrl+C / Ctrl+V mais en mieux.",
+    "motsCles": "copier dupliquer fichier dossier",
+    "title": "Copier des fichiers",
+    "tags": [
+      "copier",
+      "dupliquer",
+      "fichier",
+      "dossier"
+    ]
+  },
+  {
+    "cmd": "mv",
+    "url": "commandes/mv.html",
+    "categorie": "fichiers",
+    "desc": "Déplace ou renomme des fichiers. La commande couteau suisse des fichiers.",
+    "motsCles": "déplacer renommer fichier bouger",
+    "title": "Déplacer ou renommer un fichier",
+    "tags": [
+      "déplacer",
+      "renommer",
+      "fichier",
+      "bouger"
+    ]
+  },
+  {
+    "cmd": "rm",
+    "url": "commandes/rm.html",
+    "categorie": "fichiers ⚠️",
+    "desc": "Supprime des fichiers. Attention : pas de corbeille, pas de retour arrière.",
+    "motsCles": "supprimer effacer fichier enlever vider nettoyer",
+    "title": "Supprimer des fichiers",
+    "tags": [
+      "supprimer",
+      "effacer",
+      "fichier",
+      "enlever"
+    ]
+  },
+  {
+    "cmd": "mkdir",
+    "url": "commandes/mkdir.html",
+    "categorie": "fichiers",
+    "desc": "Crée un nouveau dossier. Avec -p, crée toute l'arborescence d'un coup.",
+    "motsCles": "créer dossier répertoire nouveau",
+    "title": "Créer un dossier",
+    "tags": [
+      "créer",
+      "dossier",
+      "répertoire",
+      "nouveau"
+    ]
+  },
+  {
+    "cmd": "touch",
+    "url": "commandes/touch.html",
+    "categorie": "fichiers",
+    "desc": "Crée un fichier vide ou met à jour sa date de modification.",
+    "motsCles": "créer fichier vide",
+    "title": "Crée un fichier vide ou met à jour sa date de modification.",
+    "tags": [
+      "fichiers"
+    ]
+  },
+  {
+    "cmd": "cat",
+    "url": "commandes/cat.html",
+    "categorie": "fichiers",
+    "desc": "Affiche le contenu d'un fichier dans le terminal. Simple et efficace.",
+    "motsCles": "afficher lire fichier contenu voir texte",
+    "title": "Afficher le contenu d'un fichier",
+    "tags": [
+      "afficher",
+      "lire",
+      "fichier",
+      "contenu",
+      "voir"
+    ]
+  },
+  {
+    "cmd": "less",
+    "url": "commandes/less.html",
+    "categorie": "fichiers",
+    "desc": "Lit un fichier page par page. Mieux que cat pour les gros fichiers.",
+    "motsCles": "lire naviguer fichier page gros long",
+    "title": "Lire un gros fichier page par page",
+    "tags": [
+      "lire",
+      "naviguer",
+      "fichier",
+      "page",
+      "gros"
+    ]
+  },
+  {
+    "cmd": "ln",
+    "url": "commandes/ln.html",
+    "categorie": "fichiers",
+    "desc": "Crée un lien symbolique. Comme un raccourci, mais vraiment puissant.",
+    "motsCles": "créer lien symbolique",
+    "title": "Crée un lien symbolique. Comme un raccourci, mais vraiment puissant.",
+    "tags": [
+      "fichiers"
+    ]
+  },
+  {
+    "cmd": "grep",
+    "url": "commandes/grep.html",
+    "categorie": "recherche",
+    "desc": "Cherche du texte dans des fichiers. Le Ctrl+F surpuissant du terminal.",
+    "motsCles": "chercher trouver texte fichier mot rechercher pattern regex logs",
+    "title": "Chercher du texte dans des fichiers",
+    "tags": [
+      "chercher",
+      "texte",
+      "fichier",
+      "trouver",
+      "pattern",
+      "recherche"
+    ]
+  },
+  {
+    "cmd": "find",
+    "url": "commandes/find.html",
+    "categorie": "recherche",
+    "desc": "Trouve des fichiers selon plein de critères : nom, taille, date, permissions...",
+    "motsCles": "trouver fichier chercher localiser nom taille date",
+    "title": "Trouver des fichiers",
+    "tags": [
+      "trouver",
+      "fichier",
+      "chercher",
+      "localiser",
+      "nom",
+      "taille"
+    ]
+  },
+  {
+    "cmd": "locate",
+    "url": "commandes/locate.html",
+    "categorie": "recherche",
+    "desc": "Trouve des fichiers instantanément grâce à un index. Plus rapide que find.",
+    "motsCles": "localiser fichier rapide",
+    "title": "Trouve des fichiers instantanément grâce à un index. Plus rapide que find.",
+    "tags": [
+      "recherche"
+    ]
+  },
+  {
+    "cmd": "which",
+    "url": "commandes/which.html",
+    "categorie": "recherche",
+    "desc": "Trouve où se trouve un programme installé sur le système.",
+    "motsCles": "trouver programme installé chemin exécutable localiser",
+    "title": "Trouver où est installé un programme",
+    "tags": [
+      "trouver",
+      "programme",
+      "installé",
+      "chemin",
+      "exécutable"
+    ]
+  },
+  {
+    "cmd": "ag",
+    "url": "commandes/ag.html",
+    "categorie": "recherche",
+    "desc": "Le Silver Searcher. Comme grep mais 10x plus rapide pour chercher dans du code.",
+    "motsCles": "chercher code rapide silver searcher",
+    "title": "Le Silver Searcher. Comme grep mais 10x plus rapide pour chercher dans du code.",
+    "tags": [
+      "recherche"
+    ]
+  },
+  {
+    "cmd": "ssh",
+    "url": "commandes/ssh.html",
+    "categorie": "réseau",
+    "desc": "Se connecte à distance sur un autre ordinateur de manière sécurisée.",
+    "motsCles": "connexion serveur distant SSH remote accéder terminal",
+    "title": "Se connecter à un serveur distant",
+    "tags": [
+      "connexion",
+      "serveur",
+      "distant",
+      "SSH",
+      "remote",
+      "accéder"
+    ]
+  },
+  {
+    "cmd": "scp",
+    "url": "commandes/scp.html",
+    "categorie": "réseau",
+    "desc": "Copie des fichiers entre machines via SSH. Comme cp mais sur le réseau.",
+    "motsCles": "copier transférer envoyer fichier serveur SSH",
+    "title": "Copier des fichiers vers un serveur",
+    "tags": [
+      "copier",
+      "transférer",
+      "serveur",
+      "SSH",
+      "envoyer",
+      "fichier"
+    ]
+  },
+  {
+    "cmd": "curl",
+    "url": "commandes/curl.html",
+    "categorie": "réseau",
+    "desc": "Fait des requêtes HTTP, télécharge des fichiers, teste des APIs.",
+    "motsCles": "tester api http requête download web rest",
+    "title": "Tester une API ou télécharger",
+    "tags": [
+      "api",
+      "http",
+      "télécharger",
+      "requête",
+      "tester",
+      "web"
+    ]
+  },
+  {
+    "cmd": "ping",
+    "url": "commandes/ping.html",
+    "categorie": "réseau",
+    "desc": "Vérifie si une machine est accessible sur le réseau. Envoie des petits paquets.",
+    "motsCles": "tester réseau accessible connectivité ip domaine ping",
+    "title": "Tester si une machine est accessible",
+    "tags": [
+      "tester",
+      "réseau",
+      "accessible",
+      "connectivité",
+      "ip"
+    ]
+  },
+  {
+    "cmd": "netstat",
+    "url": "commandes/netstat.html",
+    "categorie": "réseau",
+    "desc": "Affiche les connexions réseau actives et les ports ouverts sur le système.",
+    "motsCles": "ports ouverts connexions réseau écoute netstat",
+    "title": "Voir les ports ouverts",
+    "tags": [
+      "ports",
+      "ouverts",
+      "connexions",
+      "réseau",
+      "écoute"
+    ]
+  },
+  {
+    "cmd": "rsync",
+    "url": "commandes/rsync.html",
+    "categorie": "réseau",
+    "desc": "Synchronise des fichiers localement ou à distance. La commande de sauvegarde ultime.",
+    "motsCles": "synchroniser sauvegarder backup copier fichiers serveur rsync",
+    "title": "Synchroniser ou sauvegarder des fichiers",
+    "tags": [
+      "synchroniser",
+      "sauvegarder",
+      "backup",
+      "copier",
+      "synchronisation"
+    ]
+  },
+  {
+    "cmd": "ps",
+    "url": "commandes/ps.html",
+    "categorie": "processus",
+    "desc": "Liste les processus en cours. Le Gestionnaire des tâches du terminal.",
+    "motsCles": "voir processus programmes tâches qui tourne liste",
+    "title": "Voir les processus en cours",
+    "tags": [
+      "processus",
+      "voir",
+      "lister",
+      "programmes",
+      "tâches"
+    ]
+  },
+  {
+    "cmd": "top",
+    "url": "commandes/top.html",
+    "categorie": "processus",
+    "desc": "Moniteur en temps réel : processus, CPU, mémoire. Se met à jour en direct.",
+    "motsCles": "monitorer surveiller cpu mémoire temps réel utilisation",
+    "title": "Monitorer CPU et mémoire",
+    "tags": [
+      "monitorer",
+      "cpu",
+      "mémoire",
+      "temps réel",
+      "surveiller"
+    ]
+  },
+  {
+    "cmd": "kill",
+    "url": "commandes/kill.html",
+    "categorie": "processus ⚠️",
+    "desc": "Envoie un signal à un processus. Souvent utilisé pour l'arrêter.",
+    "motsCles": "tuer arrêter stopper processus bloqué kill signal",
+    "title": "Tuer ou arrêter un processus",
+    "tags": [
+      "tuer",
+      "arrêter",
+      "processus",
+      "kill",
+      "bloquer",
+      "stopper"
+    ]
+  },
+  {
+    "cmd": "htop",
+    "url": "commandes/htop.html",
+    "categorie": "processus",
+    "desc": "Comme top mais en couleur et interactif. La version moderne et fun.",
+    "motsCles": "monitorer cpu mémoire interactif processus couleur",
+    "title": "Moniteur interactif de processus",
+    "tags": [
+      "monitorer",
+      "cpu",
+      "mémoire",
+      "interactif",
+      "processus"
+    ]
+  },
+  {
+    "cmd": "nohup",
+    "url": "commandes/nohup.html",
+    "categorie": "processus",
+    "desc": "Lance un processus qui continue même après la fermeture du terminal.",
+    "motsCles": "lancer processus background arrière-plan",
+    "title": "Lance un processus qui continue même après la fermeture du terminal.",
+    "tags": [
+      "processus"
+    ]
+  },
+  {
+    "cmd": "chmod",
+    "url": "commandes/chmod.html",
+    "categorie": "permissions",
+    "desc": "Modifie les permissions d'un fichier. Qui peut lire, écrire, exécuter.",
+    "motsCles": "permissions droits fichier modifier accès rwx exécutable",
+    "title": "Modifier les permissions d'un fichier",
+    "tags": [
+      "permissions",
+      "droits",
+      "fichier",
+      "modifier",
+      "accès",
+      "rwx"
+    ]
+  },
+  {
+    "cmd": "chown",
+    "url": "commandes/chown.html",
+    "categorie": "permissions",
+    "desc": "Change le propriétaire d'un fichier ou dossier.",
+    "motsCles": "propriétaire fichier changer groupe utilisateur",
+    "title": "Changer le propriétaire d'un fichier",
+    "tags": [
+      "propriétaire",
+      "fichier",
+      "changer",
+      "groupe",
+      "utilisateur"
+    ]
+  },
+  {
+    "cmd": "sudo",
+    "url": "commandes/sudo.html",
+    "categorie": "permissions ⚠️",
+    "desc": "Exécute une commande avec les privilèges administrateur. Avec grand pouvoir...",
+    "motsCles": "administrateur root droits admin super utilisateur",
+    "title": "Exécuter en administrateur",
+    "tags": [
+      "administrateur",
+      "root",
+      "sudo",
+      "droits",
+      "super"
+    ]
+  },
+  {
+    "cmd": "su",
+    "url": "commandes/su.html",
+    "categorie": "permissions",
+    "desc": "Change d'utilisateur dans la session terminal courante.",
+    "motsCles": "changer utilisateur root",
+    "title": "Change d'utilisateur dans la session terminal courante.",
+    "tags": [
+      "permissions"
+    ]
+  },
+  {
+    "cmd": "awk",
+    "url": "commandes/awk.html",
+    "categorie": "texte",
+    "desc": "Traite du texte colonne par colonne. Un mini-langage de programmation pour les données.",
+    "motsCles": "données colonnes traiter extraire calculer csv analyser",
+    "title": "Traiter des données en colonnes",
+    "tags": [
+      "données",
+      "colonnes",
+      "traiter",
+      "extraire",
+      "calculer",
+      "csv"
+    ]
+  },
+  {
+    "cmd": "sed",
+    "url": "commandes/sed.html",
+    "categorie": "texte",
+    "desc": "Édite du texte en flux. Cherche/remplace ultra-puissant sur des fichiers entiers.",
+    "motsCles": "remplacer chercher texte fichier masse substitution batch",
+    "title": "Chercher et remplacer dans des fichiers",
+    "tags": [
+      "remplacer",
+      "chercher",
+      "texte",
+      "fichier",
+      "masse",
+      "substitution"
+    ]
+  },
+  {
+    "cmd": "sort",
+    "url": "commandes/sort.html",
+    "categorie": "texte",
+    "desc": "Trie les lignes d'un fichier ou d'une entrée. Alphabétique, numérique, inverse...",
+    "motsCles": "trier classer alphabétique numérique ordonner lignes",
+    "title": "Trier des lignes",
+    "tags": [
+      "trier",
+      "classer",
+      "alphabétique",
+      "numérique",
+      "ordonner"
+    ]
+  },
+  {
+    "cmd": "cut",
+    "url": "commandes/cut.html",
+    "categorie": "texte",
+    "desc": "Extrait des colonnes ou des champs d'un texte. Parfait pour les CSV.",
+    "motsCles": "extraire colonnes champs texte",
+    "title": "Extrait des colonnes ou des champs d'un texte. Parfait pour les CSV.",
+    "tags": [
+      "texte"
+    ]
+  },
+  {
+    "cmd": "wc",
+    "url": "commandes/wc.html",
+    "categorie": "texte",
+    "desc": "Compte les mots, lignes et caractères d'un fichier ou d'une entrée.",
+    "motsCles": "compter lignes mots caractères nombre statistiques",
+    "title": "Compter des lignes ou des mots",
+    "tags": [
+      "compter",
+      "lignes",
+      "mots",
+      "caractères",
+      "nombre"
+    ]
+  },
+  {
+    "cmd": "df",
+    "url": "commandes/df.html",
+    "categorie": "système",
+    "desc": "Affiche l'espace disque disponible sur chaque partition montée.",
+    "motsCles": "espace disque disponible partition stockage plein",
+    "title": "Voir l'espace disque disponible",
+    "tags": [
+      "espace",
+      "disque",
+      "disponible",
+      "partition",
+      "stockage"
+    ]
+  },
+  {
+    "cmd": "du",
+    "url": "commandes/du.html",
+    "categorie": "système",
+    "desc": "Mesure la taille qu'occupent des fichiers ou dossiers sur le disque.",
+    "motsCles": "taille dossier espace occupé gros fichier mesurer",
+    "title": "Voir la taille d'un dossier",
+    "tags": [
+      "taille",
+      "dossier",
+      "espace",
+      "occupé",
+      "gros",
+      "fichier"
+    ]
+  },
+  {
+    "cmd": "cron",
+    "url": "commandes/cron.html",
+    "categorie": "système",
+    "desc": "Planifie des tâches automatiques. Lance des scripts à heure fixe.",
+    "motsCles": "planifier automatique tâche programmé répétitif schedule cron",
+    "title": "Planifier une tâche automatique",
+    "tags": [
+      "planifier",
+      "automatique",
+      "tâche",
+      "programmé",
+      "répétitif"
+    ]
+  },
+  {
+    "cmd": "uname",
+    "url": "commandes/uname.html",
+    "categorie": "système",
+    "desc": "Affiche des informations sur le système : noyau, architecture, hostname...",
+    "motsCles": "informations système noyau",
+    "title": "Affiche des informations sur le système : noyau, architecture, hostname...",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "wget",
+    "url": "commandes/wget.html",
+    "categorie": "réseau",
+    "desc": "Télécharger des fichiers depuis internet.",
+    "motsCles": "télécharger download internet url fichier http",
+    "title": "Télécharger des fichiers depuis internet",
+    "tags": [
+      "télécharger",
+      "download",
+      "internet",
+      "url",
+      "fichier"
+    ]
+  },
+  {
+    "cmd": "ip",
+    "url": "commandes/ip.html",
+    "categorie": "réseau",
+    "desc": "Voir et configurer les interfaces réseau.",
+    "motsCles": "Voir et configurer les interfaces réseau.",
+    "title": "Voir et configurer les interfaces réseau.",
+    "tags": [
+      "réseau"
+    ]
+  },
+  {
+    "cmd": "ss",
+    "url": "commandes/ss.html",
+    "categorie": "réseau",
+    "desc": "Ports ouverts et connexions (moderne).",
+    "motsCles": "Ports ouverts et connexions (moderne).",
+    "title": "Ports ouverts et connexions (moderne).",
+    "tags": [
+      "réseau"
+    ]
+  },
+  {
+    "cmd": "nmap",
+    "url": "commandes/nmap.html",
+    "categorie": "réseau",
+    "desc": "Scanner un réseau et ses ports.",
+    "motsCles": "Scanner un réseau et ses ports.",
+    "title": "Scanner un réseau et ses ports.",
+    "tags": [
+      "réseau"
+    ]
+  },
+  {
+    "cmd": "ssh-keygen",
+    "url": "commandes/ssh-keygen.html",
+    "categorie": "réseau",
+    "desc": "Générer des clés SSH.",
+    "motsCles": "Générer des clés SSH.",
+    "title": "Générer des clés SSH.",
+    "tags": [
+      "réseau"
+    ]
+  },
+  {
+    "cmd": "date",
+    "url": "commandes/date.html",
+    "categorie": "système",
+    "desc": "Afficher et formater la date.",
+    "motsCles": "Afficher et formater la date.",
+    "title": "Afficher et formater la date.",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "free",
+    "url": "commandes/free.html",
+    "categorie": "système",
+    "desc": "Voir la RAM disponible.",
+    "motsCles": "Voir la RAM disponible.",
+    "title": "Voir la RAM disponible.",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "uptime",
+    "url": "commandes/uptime.html",
+    "categorie": "système",
+    "desc": "Durée de fonctionnement et charge.",
+    "motsCles": "Durée de fonctionnement et charge.",
+    "title": "Durée de fonctionnement et charge.",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "history",
+    "url": "commandes/history.html",
+    "categorie": "système",
+    "desc": "Historique des commandes.",
+    "motsCles": "Historique des commandes.",
+    "title": "Historique des commandes.",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "man",
+    "url": "commandes/man.html",
+    "categorie": "système",
+    "desc": "Manuel d'aide de chaque commande.",
+    "motsCles": "Manuel d'aide de chaque commande.",
+    "title": "Manuel d'aide de chaque commande.",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "at",
+    "url": "commandes/at.html",
+    "categorie": "système",
+    "desc": "Planifier une tâche unique.",
+    "motsCles": "Planifier une tâche unique.",
+    "title": "Planifier une tâche unique.",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "hostname",
+    "url": "commandes/hostname.html",
+    "categorie": "système",
+    "desc": "Nom de la machine.",
+    "motsCles": "Nom de la machine.",
+    "title": "Nom de la machine.",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "useradd",
+    "url": "commandes/useradd.html",
+    "categorie": "système",
+    "desc": "Créer un utilisateur.",
+    "motsCles": "Créer un utilisateur.",
+    "title": "Créer un utilisateur.",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "passwd",
+    "url": "commandes/passwd.html",
+    "categorie": "système",
+    "desc": "Changer le mot de passe.",
+    "motsCles": "Changer le mot de passe.",
+    "title": "Changer le mot de passe.",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "groups",
+    "url": "commandes/groups.html",
+    "categorie": "système",
+    "desc": "Groupes d'un utilisateur.",
+    "motsCles": "Groupes d'un utilisateur.",
+    "title": "Groupes d'un utilisateur.",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "id",
+    "url": "commandes/id.html",
+    "categorie": "système",
+    "desc": "Identité complète (UID, GID).",
+    "motsCles": "Identité complète (UID, GID).",
+    "title": "Identité complète (UID, GID).",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "whoami",
+    "url": "commandes/whoami.html",
+    "categorie": "système",
+    "desc": "Qui suis-je ?",
+    "motsCles": "Qui suis-je ?",
+    "title": "Qui suis-je ?",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "type",
+    "url": "commandes/type.html",
+    "categorie": "système",
+    "desc": "Type d'une commande (alias, builtin...).",
+    "motsCles": "Type d'une commande (alias, builtin...).",
+    "title": "Type d'une commande (alias, builtin...).",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "bc",
+    "url": "commandes/bc.html",
+    "categorie": "système",
+    "desc": "Calculatrice dans le terminal.",
+    "motsCles": "Calculatrice dans le terminal.",
+    "title": "Calculatrice dans le terminal.",
+    "tags": [
+      "système"
+    ]
+  },
+  {
+    "cmd": "systemctl",
+    "url": "commandes/systemctl.html",
+    "categorie": "système",
+    "desc": "Gérer les services systemd.",
+    "motsCles": "service démarrer arrêter nginx mysql ssh systemd gérer",
+    "title": "Démarrer ou arrêter un service",
+    "tags": [
+      "service",
+      "démarrer",
+      "arrêter",
+      "nginx",
+      "mysql",
+      "systemd"
+    ]
+  },
+  {
+    "cmd": "journalctl",
+    "url": "commandes/journalctl.html",
+    "categorie": "système",
+    "desc": "Lire les logs système.",
+    "motsCles": "logs système lire erreurs debugger journaux service",
+    "title": "Voir les logs système",
+    "tags": [
+      "logs",
+      "système",
+      "lire",
+      "erreurs",
+      "debugger"
+    ]
+  },
+  {
+    "cmd": "jobs",
+    "url": "commandes/jobs.html",
+    "categorie": "processus",
+    "desc": "Processus en arrière-plan du shell.",
+    "motsCles": "Processus en arrière-plan du shell.",
+    "title": "Processus en arrière-plan du shell.",
+    "tags": [
+      "processus"
+    ]
+  },
+  {
+    "cmd": "screen",
+    "url": "commandes/screen.html",
+    "categorie": "processus",
+    "desc": "Sessions persistantes (alternative tmux).",
+    "motsCles": "Sessions persistantes (alternative tmux).",
+    "title": "Sessions persistantes (alternative tmux).",
+    "tags": [
+      "processus"
+    ]
+  },
+  {
+    "cmd": "watch",
+    "url": "commandes/watch.html",
+    "categorie": "processus",
+    "desc": "Répéter une commande en temps réel.",
+    "motsCles": "Répéter une commande en temps réel.",
+    "title": "Répéter une commande en temps réel.",
+    "tags": [
+      "processus"
+    ]
+  },
+  {
+    "cmd": "vim",
+    "url": "commandes/vim.html",
+    "categorie": "outils",
+    "desc": "Éditeur puissant. Apprendre une fois, utiliser toujours.",
+    "motsCles": "quitter vim sortir fermer échapper",
+    "title": "Quitter vim",
+    "tags": [
+      "vim",
+      "quitter",
+      "sortir",
+      "fermer"
+    ]
+  },
+  {
+    "cmd": "nano",
+    "url": "commandes/nano.html",
+    "categorie": "outils",
+    "desc": "Éditeur simple et accessible.",
+    "motsCles": "éditer modifier fichier texte écrire simple débutant",
+    "title": "Éditer un fichier simplement",
+    "tags": [
+      "éditer",
+      "modifier",
+      "fichier",
+      "texte",
+      "écrire"
+    ]
+  },
+  {
+    "cmd": "tmux",
+    "url": "commandes/tmux.html",
+    "categorie": "outils",
+    "desc": "Plusieurs terminaux, sessions persistantes.",
+    "motsCles": "session persistante déconnexion garder actif ssh",
+    "title": "Garder une session active après déconnexion",
+    "tags": [
+      "session",
+      "persistante",
+      "déconnexion",
+      "garder",
+      "actif"
+    ]
+  },
+  {
+    "cmd": "git",
+    "url": "commandes/git.html",
+    "categorie": "outils",
+    "desc": "Versionner son code.",
+    "motsCles": "git versionner code commit branches push pull github",
+    "title": "Versionner son code",
+    "tags": [
+      "git",
+      "version",
+      "code",
+      "commit",
+      "branches",
+      "versionner"
+    ]
+  },
+  {
+    "cmd": "alias",
+    "url": "commandes/alias.html",
+    "categorie": "outils",
+    "desc": "Créer des raccourcis de commandes.",
+    "motsCles": "raccourci alias personnaliser abréger custom commande longue",
+    "title": "Créer un raccourci de commande",
+    "tags": [
+      "raccourci",
+      "alias",
+      "personnaliser",
+      "abréger",
+      "custom"
+    ]
+  },
+  {
+    "cmd": "echo",
+    "url": "commandes/echo.html",
+    "categorie": "outils",
+    "desc": "Afficher du texte dans le terminal.",
+    "motsCles": "Afficher du texte dans le terminal.",
+    "title": "Afficher du texte dans le terminal.",
+    "tags": [
+      "outils"
+    ]
+  },
+  {
+    "cmd": "tar",
+    "url": "commandes/tar.html",
+    "categorie": "fichiers",
+    "desc": "Compresser et archiver. Le zip de Linux.",
+    "motsCles": "extraire décompresser archive tar gz tgz",
+    "title": "Extraire une archive",
+    "tags": [
+      "extraire",
+      "décompresser",
+      "archive",
+      "tar",
+      "gz"
+    ]
+  },
+  {
+    "cmd": "zip",
+    "url": "commandes/zip.html",
+    "categorie": "fichiers",
+    "desc": "Archive ZIP compatible Windows et Mac.",
+    "motsCles": "zip compresser archiver windows compatible archive",
+    "title": "Créer une archive ZIP",
+    "tags": [
+      "zip",
+      "compresser",
+      "archiver",
+      "windows",
+      "archive"
+    ]
+  },
+  {
+    "cmd": "gzip",
+    "url": "commandes/gzip.html",
+    "categorie": "fichiers",
+    "desc": "Compresser un seul fichier rapidement.",
+    "motsCles": "Compresser un seul fichier rapidement.",
+    "title": "Compresser un seul fichier rapidement.",
+    "tags": [
+      "fichiers"
+    ]
+  },
+  {
+    "cmd": "md5sum",
+    "url": "commandes/md5sum.html",
+    "categorie": "fichiers",
+    "desc": "Vérifier l'intégrité d'un fichier.",
+    "motsCles": "Vérifier l'intégrité d'un fichier.",
+    "title": "Vérifier l'intégrité d'un fichier.",
+    "tags": [
+      "fichiers"
+    ]
+  },
+  {
+    "cmd": "cmp",
+    "url": "commandes/cmp.html",
+    "categorie": "fichiers",
+    "desc": "Comparer deux fichiers octet par octet.",
+    "motsCles": "Comparer deux fichiers octet par octet.",
+    "title": "Comparer deux fichiers octet par octet.",
+    "tags": [
+      "fichiers"
+    ]
+  }
+]

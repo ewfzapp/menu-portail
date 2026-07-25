@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="apprendre linux, parcours linux, formation linux gratuite, cours terminal linux">
+<meta name="description" content="Un parcours progressif : terminal, fichiers, permissions, réseau SSH, scripts bash, sécurité. Chaque module avec ses leçons et sa mission pratique.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apprendre Linux — Parcours structuré du débutant à l'expert</title>
+<link rel="canonical" href="https://linux.khassam.fr/apprendre/">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--ink:#1A1208;--accent:#FF3D00;--green:#00C853;--blue:#0066FF;--surface:#EDE8DE;--border:rgba(26,18,8,0.12);--mono:'JetBrains Mono',monospace;--serif:'Crimson Pro',Georgia,serif;--display:'Bebas Neue',sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:12px;height:12px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--ink);border-radius:50%;pointer-events:none;z-index:9998;transition:all 0.15s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 3rem;border-bottom:1px solid var(--border);background:rgba(245,240,232,0.92);backdrop-filter:blur(12px);}
+.nav-logo{font-family:var(--mono);font-size:13px;font-weight:700;text-decoration:none;color:inherit;}
+.p{color:var(--green);}
+.nb{display:inline-block;width:8px;height:14px;background:var(--ink);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.nav-links{display:flex;gap:2rem;list-style:none;font-size:12px;font-family:var(--mono);}
+.nav-links a{color:var(--ink);text-decoration:none;opacity:0.45;transition:opacity 0.2s;}
+.nav-links a:hover,.nav-links a.active{opacity:1;}
+
+.hero{padding:8rem 3rem 5rem;background:var(--ink);}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--green);margin-bottom:0.75rem;}
+.hero-title{font-family:var(--display);font-size:clamp(60px,9vw,140px);line-height:0.88;color:var(--bg);margin-bottom:1.5rem;}
+.hero-desc{font-size:18px;font-weight:300;color:rgba(245,240,232,0.5);max-width:560px;line-height:1.7;}
+
+/* Level selector */
+.level-selector{display:flex;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden;max-width:500px;margin:3rem 3rem 0;}
+.level-btn{flex:1;padding:1rem;text-align:center;cursor:none;border:none;background:var(--surface);transition:all 0.2s;font-family:var(--mono);font-size:12px;letter-spacing:0.05em;border-right:1px solid var(--border);}
+.level-btn:last-child{border-right:none;}
+.level-btn:hover{background:var(--bg);}
+.level-btn.active{background:var(--ink);color:var(--bg);}
+.level-btn .level-icon{font-size:20px;display:block;margin-bottom:4px;}
+.level-btn .level-name{font-weight:700;}
+
+/* Parcours content */
+.parcours{padding:3rem;}
+.level-content{display:none;}
+.level-content.show{display:block;}
+
+/* Module cards */
+.module{background:var(--bg);border:1px solid var(--border);border-radius:8px;margin-bottom:1rem;overflow:hidden;transition:all 0.2s;}
+.module:hover{box-shadow:0 8px 24px rgba(26,18,8,0.06);}
+.module-header{display:flex;align-items:center;gap:1.25rem;padding:1.25rem 1.5rem;cursor:none;}
+.module-num{font-family:var(--display);font-size:36px;color:rgba(26,18,8,0.12);line-height:1;width:48px;text-align:center;flex-shrink:0;}
+.module.done .module-num{color:var(--green);}
+.module-info{flex:1;}
+.module-title{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:2px;}
+.module-meta{display:flex;gap:1rem;font-family:var(--mono);font-size:11px;opacity:0.4;}
+.module-status{font-family:var(--mono);font-size:11px;padding:4px 12px;border-radius:2px;letter-spacing:0.05em;}
+.status-todo{background:var(--surface);color:rgba(26,18,8,0.4);}
+.status-done{background:rgba(0,200,83,0.1);color:var(--green);}
+.status-wip{background:rgba(255,189,0,0.1);color:#FFBD00;}
+
+.module-body{padding:0 1.5rem 1.5rem;display:none;}
+.module.open .module-body{display:block;}
+.module-desc{font-size:16px;font-weight:300;opacity:0.7;line-height:1.7;margin-bottom:1.25rem;}
+.lessons{display:flex;flex-direction:column;gap:4px;}
+.lesson{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:4px;background:var(--surface);font-family:var(--mono);font-size:12px;cursor:none;text-decoration:none;color:var(--ink);transition:all 0.2s;}
+.lesson:hover{background:var(--ink);color:var(--bg);}
+.lesson.done{color:var(--green);}
+.lesson-check{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(26,18,8,0.2);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;}
+.lesson.done .lesson-check{background:var(--green);border-color:var(--green);color:var(--ink);}
+.lesson:hover .lesson-check{border-color:rgba(245,240,232,0.3);}
+.lesson-duration{margin-left:auto;opacity:0.4;font-size:11px;}
+
+/* Progress overview */
+.progress-overview{background:var(--ink);padding:2rem 3rem;display:flex;gap:3rem;align-items:center;flex-wrap:wrap;}
+.ov-stat{text-align:center;}
+.ov-num{font-family:var(--display);font-size:52px;color:var(--bg);line-height:1;}
+.ov-label{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,240,232,0.3);}
+.ov-bar-wrap{flex:1;min-width:200px;}
+.ov-bar-label{font-family:var(--mono);font-size:11px;color:rgba(245,240,232,0.4);margin-bottom:8px;}
+.ov-bar{height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.ov-bar-fill{height:100%;background:var(--green);border-radius:2px;transition:width 0.5s ease;}
+
+footer{background:var(--ink);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;margin-top:4rem;}
+.ft-copy{font-family:var(--mono);font-size:11px;color:rgba(245,240,232,0.18);}
+.ft-back{font-family:var(--mono);font-size:12px;color:rgba(245,240,232,0.4);text-decoration:none;}
+.ft-back:hover{color:var(--bg);}
+
+@media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{display:none;}.hero{padding:7rem 1.5rem 3rem;}.parcours{padding:2rem 1.5rem;}.level-selector{margin:2rem 1.5rem 0;}.progress-overview{padding:2rem 1.5rem;gap:1.5rem;}}
+
+.nav-links{display:flex;gap:1.5rem;list-style:none;font-size:12px;font-family:var(--mono);letter-spacing:0.04em;}
+.nav-links a{color:var(--ink);text-decoration:none;opacity:0.5;transition:opacity 0.2s;}
+.nav-links a:hover{opacity:1;}
+.nav-cta{font-family:var(--mono);font-size:12px;font-weight:700;background:var(--ink);color:var(--bg);padding:8px 20px;border-radius:3px;text-decoration:none;transition:background 0.2s;}
+.nav-cta:hover{background:var(--accent);}
+.nav-drop{position:relative;}
+.nav-drop>a{cursor:none;}
+.drop-menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:10px;background:transparent;z-index:500;}
+.drop-menu-inner{background:var(--ink);border-radius:8px;padding:0.5rem;min-width:200px;box-shadow:0 20px 40px rgba(26,18,8,0.25);}
+.drop-menu-inner::before{content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid var(--ink);}
+.drop-menu a{display:block;padding:8px 14px;border-radius:4px;font-family:var(--mono);font-size:12px;color:rgba(245,240,232,0.6)!important;text-decoration:none;opacity:1!important;transition:all 0.15s;white-space:nowrap;}
+.drop-menu a:hover{background:rgba(255,255,255,0.08);color:var(--bg)!important;}
+.nav-drop:hover .drop-menu{display:block;}
+@media(max-width:900px){.nav-links{display:none;}}
+
+/* ── LISIBILITÉ FOND SOMBRE ── */
+.cmd-hero, .hero, .mission-hero { background: #1A1208; }
+.cmd-tagline { color: rgba(245,240,232,0.80) !important; }
+.cmd-big, .hero-title, .mc-title { color: #F5F0E8 !important; }
+.cmd-full, .cmd-label, .hero-eyebrow { opacity: 1 !important; }
+.cmd-full { color: rgba(245,240,232,0.45) !important; }
+.hero-desc { color: rgba(245,240,232,0.70) !important; }
+.hero-count { color: rgba(245,240,232,0.60) !important; }
+.scenario-text { color: rgba(245,240,232,0.85) !important; }
+/* Blocs de code : texte plus lisible */
+.cb-body { color: #E8E4DC !important; }
+.co { color: rgba(245,240,232,0.65) !important; }
+.cm { color: rgba(245,240,232,0.38) !important; }
+.cb-title { color: rgba(245,240,232,0.45) !important; }
+/* Curseur visible sur fond sombre */
+.cmd-hero .cursor, .hero .cursor { mix-blend-mode: normal !important; background: #FF3D00 !important; }
+
+
+/* ── MENU MOBILE OVERLAY ── */
+.hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; background: none; border: none; padding: 8px; z-index: 1000; position: relative; }
+.hamburger span { display: block; width: 26px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); background: #fff; }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); background: #fff; }
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #0D0D0D;
+  z-index: 999;
+  overflow-y: auto;
+  padding: 80px 0 40px;
+  flex-direction: column;
+}
+.mobile-overlay.open { display: flex !important; }
+.mobile-overlay a {
+  font-family: var(--mono);
+  font-size: 20px;
+  color: rgba(245,240,232,0.75);
+  text-decoration: none;
+  padding: 18px 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: all 0.15s;
+  display: block;
+  width: 100%;
+}
+.mobile-overlay a:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+.mobile-overlay a:active, .mobile-overlay a:hover { background: rgba(255,61,0,0.1); color: #fff; }
+.mobile-overlay .mob-close {
+  margin-top: 2rem;
+  font-size: 14px;
+  color: rgba(245,240,232,0.3) !important;
+  text-align: center;
+  border: none !important;
+  background: none;
+}
+@media(max-width:900px) {
+  .hamburger { display: flex !important; }
+  .nav-links { display: none !important; }
+  .nav-cta { display: none !important; }
+  nav { padding: 1rem 1.5rem; justify-content: space-between; }
+}
+</style>
+<meta property="og:title" content="Apprendre Linux — Parcours structuré du débutant à l'expert">
+<meta property="og:description" content="Un parcours progressif : terminal, fichiers, permissions, réseau SSH, scripts bash, sécurité. Chaque module avec ses leçons et sa mission pratique.">
+<meta property="og:url" content="https://linux.khassam.fr/apprendre/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apprendre Linux — Parcours structuré du débutant à l'expert">
+<meta name="twitter:description" content="Un parcours progressif : terminal, fichiers, permissions, réseau SSH, scripts bash, sécurité. Chaque module avec ses leçons et sa mission pratique.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805732481707409" crossorigin="anonymous">
+
+</script>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="p">user@linux</span>:~$ <span class="nb"></span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Accueil</a></li>
+    <li class="nav-drop"><a href="../commandes/index.html">Commandes ▾</a>
+      <div class="drop-menu"><div class="drop-menu-inner">
+        <a href="../commandes/index.html">Toutes les commandes</a>
+        <a href="../commandes/bash.html">📜 Scripts Bash</a>
+        <a href="../commandes/grep.html">Recherche</a>
+        <a href="../commandes/ssh.html">Réseau</a>
+        <a href="../commandes/awk.html">Texte</a>
+        <a href="../commandes/df.html">Système</a>
+      </div></div>
+    </li>
+    <li class="nav-drop"><a href="../apprendre/index.html">Apprendre ▾</a>
+      <div class="drop-menu"><div class="drop-menu-inner">
+        <a href="../apprendre/index.html">Parcours structuré</a>
+        <a href="../missions/index.html">Missions</a>
+        <a href="../quiz.html">Quiz</a>
+        <a href="../cheatsheet.html">Cheatsheet</a>
+      </div></div>
+    </li>
+    <li><a href="../quelle-commande.html">🔍 Quelle commande ?</a></li>
+    <li><a href="../danger.html">⚠ Danger</a></li>
+    <li><a href="https://khassam.fr" target="_blank">Blog</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-overlay" id="mobile-overlay">
+  <a href="../index.html" onclick="toggleMenu()">🏠 Accueil</a>
+  <a href="../commandes/index.html" onclick="toggleMenu()">📚 Commandes</a>
+  <a href="../commandes/bash.html" onclick="toggleMenu()">📜 Scripts Bash</a>
+  <a href="../missions/index.html" onclick="toggleMenu()">🎯 Missions</a>
+  <a href="../apprendre/index.html" onclick="toggleMenu()">📖 Apprendre</a>
+  <a href="../quiz.html" onclick="toggleMenu()">🧠 Quiz</a>
+  <a href="../cheatsheet.html" onclick="toggleMenu()">⚡ Cheatsheet</a>
+  <a href="../quelle-commande.html" onclick="toggleMenu()">🔍 Quelle commande ?</a>
+  <a href="../danger.html" onclick="toggleMenu()">⚠️ Danger</a>
+  <a href="https://khassam.fr" target="_blank" onclick="toggleMenu()">✍️ Blog</a>
+  <a href="#" class="mob-close" onclick="toggleMenu()">✕ Fermer</a>
+</div>
+<div class="hero">
+  <div class="hero-eyebrow">Parcours structuré</div>
+  <h1 class="hero-title">APPRENDRE<br>LINUX</h1>
+  <p class="hero-desc">Un chemin clair, du débutant à l'expert. Pas de théorie inutile. Juste ce qu'il faut savoir, dans le bon ordre.</p>
+</div>
+
+<div class="progress-overview">
+  <div class="ov-stat"><div class="ov-num" id="done-count">0</div><div class="ov-label">modules terminés</div></div>
+  <div class="ov-stat"><div class="ov-num" data-count="modules">9</div><div class="ov-label">modules au total</div></div>
+  <div class="ov-bar-wrap">
+    <div class="ov-bar-label">Ta progression globale</div>
+    <div class="ov-bar"><div class="ov-bar-fill" id="global-bar" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div class="level-selector">
+  <button class="level-btn active" onclick="showLevel('debutant',this)">
+    <span class="level-icon">🌱</span>
+    <span class="level-name">Débutant</span>
+  </button>
+  <button class="level-btn" onclick="showLevel('intermediaire',this)">
+    <span class="level-icon">🌿</span>
+    <span class="level-name">Intermédiaire</span>
+  </button>
+  <button class="level-btn" onclick="showLevel('avance',this)">
+    <span class="level-icon">🌳</span>
+    <span class="level-name">Avancé</span>
+  </button>
+</div>
+
+<div class="parcours">
+
+  <!-- DÉBUTANT -->
+  <div class="level-content show" id="level-debutant">
+
+    <div class="module open" id="mod-1">
+      <div class="module-header" onclick="toggleModule('mod-1')">
+        <div class="module-num">01</div>
+        <div class="module-info">
+          <div class="module-title">Ton premier terminal</div>
+          <div class="module-meta"><span>4 leçons</span><span>~30 min</span></div>
+        </div>
+        <div class="module-status status-wip">En cours</div>
+      </div>
+      <div class="module-body">
+        <div class="module-desc">Ouvrir un terminal, comprendre l'invite de commande, et taper tes premières commandes. La base de tout.</div>
+        <div class="lessons">
+          <a href="../commandes/ls.html" class="lesson done"><div class="lesson-check">✓</div>C'est quoi un terminal ?<span class="lesson-duration">5 min</span></a>
+          <a href="../commandes/ls.html" class="lesson done"><div class="lesson-check">✓</div>Naviguer avec ls et cd<span class="lesson-duration">8 min</span></a>
+          <a href="../commandes/pwd.html" class="lesson"><div class="lesson-check"></div>Comprendre les chemins<span class="lesson-duration">7 min</span></a>
+          <a href="../commandes/touch.html" class="lesson"><div class="lesson-check"></div>Créer et lire des fichiers<span class="lesson-duration">10 min</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="module" id="mod-2">
+      <div class="module-header" onclick="toggleModule('mod-2')">
+        <div class="module-num">02</div>
+        <div class="module-info">
+          <div class="module-title">Manipuler des fichiers</div>
+          <div class="module-meta"><span>5 leçons</span><span>~40 min</span></div>
+        </div>
+        <div class="module-status status-todo">À faire</div>
+      </div>
+      <div class="module-body">
+        <div class="module-desc">Copier, déplacer, renommer, supprimer. Les opérations de base sur les fichiers, sans interface graphique.</div>
+        <div class="lessons">
+          <a href="../commandes/cp.html" class="lesson"><div class="lesson-check"></div>cp — copier des fichiers<span class="lesson-duration">8 min</span></a>
+          <a href="../commandes/mv.html" class="lesson"><div class="lesson-check"></div>mv — déplacer et renommer<span class="lesson-duration">6 min</span></a>
+          <a href="../commandes/rm.html" class="lesson"><div class="lesson-check"></div>rm — supprimer (avec précaution)<span class="lesson-duration">8 min</span></a>
+          <a href="../commandes/mkdir.html" class="lesson"><div class="lesson-check"></div>mkdir — créer des dossiers<span class="lesson-duration">5 min</span></a>
+          <a href="#" class="lesson"><div class="lesson-check"></div>Wildcards : *.txt et autres patterns<span class="lesson-duration">10 min</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="module" id="mod-3">
+      <div class="module-header" onclick="toggleModule('mod-3')">
+        <div class="module-num">03</div>
+        <div class="module-info">
+          <div class="module-title">Chercher et trouver</div>
+          <div class="module-meta"><span>4 leçons</span><span>~35 min</span></div>
+        </div>
+        <div class="module-status status-todo">À faire</div>
+      </div>
+      <div class="module-body">
+        <div class="module-desc">Retrouver des fichiers, chercher du texte dans des documents. grep et find n'auront plus de secrets pour toi.</div>
+        <div class="lessons">
+          <a href="../commandes/grep.html" class="lesson"><div class="lesson-check"></div>grep — chercher dans les fichiers<span class="lesson-duration">10 min</span></a>
+          <a href="../commandes/find.html" class="lesson"><div class="lesson-check"></div>find — retrouver des fichiers<span class="lesson-duration">10 min</span></a>
+          <a href="../commandes/which.html" class="lesson"><div class="lesson-check"></div>which et locate<span class="lesson-duration">7 min</span></a>
+          <a href="../missions/pipes-et-redirections.html" class="lesson"><div class="lesson-check"></div>Combiner avec pipes<span class="lesson-duration">8 min</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="module" id="mod-4">
+      <div class="module-header" onclick="toggleModule('mod-4')">
+        <div class="module-num">04</div>
+        <div class="module-info">
+          <div class="module-title">🏆 Mission débutant</div>
+          <div class="module-meta"><span>1 mission complète</span><span>~15 min</span></div>
+        </div>
+        <div class="module-status status-todo">À faire</div>
+      </div>
+      <div class="module-body">
+        <div class="module-desc">Tu es prêt. Mets en pratique tout ce que tu as appris avec la mission "Ton premier serveur".</div>
+        <div class="lessons">
+          <a href="../missions/premier-serveur.html" class="lesson"><div class="lesson-check"></div>Mission : Ton premier serveur<span class="lesson-duration">15 min</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INTERMÉDIAIRE -->
+  <div class="level-content" id="level-intermediaire">
+
+    <div class="module" id="mod-5">
+      <div class="module-header" onclick="toggleModule('mod-5')">
+        <div class="module-num">05</div>
+        <div class="module-info">
+          <div class="module-title">Permissions et utilisateurs</div>
+          <div class="module-meta"><span>5 leçons</span><span>~45 min</span></div>
+        </div>
+        <div class="module-status status-todo">À faire</div>
+      </div>
+      <div class="module-body">
+        <div class="module-desc">Comprendre le système de permissions rwx, gérer les utilisateurs, utiliser sudo de façon sécurisée.</div>
+        <div class="lessons">
+          <a href="../commandes/chmod.html" class="lesson"><div class="lesson-check"></div>chmod — modifier les permissions<span class="lesson-duration">12 min</span></a>
+          <a href="../commandes/chown.html" class="lesson"><div class="lesson-check"></div>chown — changer le propriétaire<span class="lesson-duration">8 min</span></a>
+          <a href="../commandes/sudo.html" class="lesson"><div class="lesson-check"></div>sudo — les super-pouvoirs<span class="lesson-duration">10 min</span></a>
+          <a href="../missions/creer-un-utilisateur.html" class="lesson"><div class="lesson-check"></div>Créer et gérer des utilisateurs<span class="lesson-duration">10 min</span></a>
+          <a href="../commandes/groups.html" class="lesson"><div class="lesson-check"></div>Les groupes Unix<span class="lesson-duration">8 min</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="module" id="mod-6">
+      <div class="module-header" onclick="toggleModule('mod-6')">
+        <div class="module-num">06</div>
+        <div class="module-info">
+          <div class="module-title">Réseau et SSH</div>
+          <div class="module-meta"><span>6 leçons</span><span>~50 min</span></div>
+        </div>
+        <div class="module-status status-todo">À faire</div>
+      </div>
+      <div class="module-body">
+        <div class="module-desc">Se connecter à des serveurs distants, copier des fichiers via le réseau, diagnostiquer des problèmes de connectivité.</div>
+        <div class="lessons">
+          <a href="../commandes/ssh.html" class="lesson"><div class="lesson-check"></div>ssh — connexion distante<span class="lesson-duration">12 min</span></a>
+          <a href="../commandes/ssh-keygen.html" class="lesson"><div class="lesson-check"></div>Clés SSH — l'authentification sans mot de passe<span class="lesson-duration">10 min</span></a>
+          <a href="../missions/copier-entre-serveurs.html" class="lesson"><div class="lesson-check"></div>scp et rsync — transférer des fichiers<span class="lesson-duration">8 min</span></a>
+          <a href="../commandes/curl.html" class="lesson"><div class="lesson-check"></div>curl — interagir avec des APIs<span class="lesson-duration">10 min</span></a>
+          <a href="../commandes/netstat.html" class="lesson"><div class="lesson-check"></div>ping, traceroute, netstat<span class="lesson-duration">8 min</span></a>
+          <a href="../missions/dns-troubleshooting.html" class="lesson"><div class="lesson-check"></div>Diagnostiquer une connexion réseau<span class="lesson-duration">8 min</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="module" id="mod-7">
+      <div class="module-header" onclick="toggleModule('mod-7')">
+        <div class="module-num">07</div>
+        <div class="module-info">
+          <div class="module-title">Scripts Bash — les bases</div>
+          <div class="module-meta"><span>6 leçons</span><span>~60 min</span></div>
+        </div>
+        <div class="module-status status-todo">À faire</div>
+      </div>
+      <div class="module-body">
+        <div class="module-desc">Automatiser des tâches répétitives avec des scripts. Variables, conditions, boucles — la programmation sans IDE.</div>
+        <div class="lessons">
+          <a href="../commandes/bash.html" class="lesson"><div class="lesson-check"></div>Mon premier script bash<span class="lesson-duration">10 min</span></a>
+          <a href="../commandes/bash.html" class="lesson"><div class="lesson-check"></div>Variables et arguments<span class="lesson-duration">10 min</span></a>
+          <a href="../commandes/bash.html" class="lesson"><div class="lesson-check"></div>Conditions if/else<span class="lesson-duration">12 min</span></a>
+          <a href="../commandes/bash.html" class="lesson"><div class="lesson-check"></div>Boucles for et while<span class="lesson-duration">12 min</span></a>
+          <a href="../commandes/bash.html" class="lesson"><div class="lesson-check"></div>Fonctions en bash<span class="lesson-duration">8 min</span></a>
+          <a href="../missions/bash-avec-gestion-erreurs.html" class="lesson"><div class="lesson-check"></div>Gestion des erreurs<span class="lesson-duration">8 min</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AVANCÉ -->
+  <div class="level-content" id="level-avance">
+
+    <div class="module" id="mod-08">
+      <div class="module-header" onclick="toggleModule('mod-08')">
+        <div class="module-num">08</div>
+        <div class="module-info">
+          <div class="module-title">Automatiser pour de vrai</div>
+          <div class="module-meta"><span>6 leçons</span><span>~95 min</span></div>
+        </div>
+        <div class="module-status status-todo">À faire</div>
+      </div>
+      <div class="module-body">
+        <div class="module-desc">Tes scripts marchent. Maintenant, fais-les tourner tout seuls, proprement, et sans mauvaise surprise à 3h du matin.</div>
+        <div class="lessons">
+          <a href="../missions/systemd-timers.html" class="lesson"><div class="lesson-check"></div>Les timers systemd — l'alternative moderne à cron<span class="lesson-duration">15 min</span></a>
+          <a href="../missions/bash-avec-gestion-erreurs.html" class="lesson"><div class="lesson-check"></div>Scripts robustes — set -euo pipefail<span class="lesson-duration">12 min</span></a>
+          <a href="../missions/xargs-traitement-en-masse.html" class="lesson"><div class="lesson-check"></div>Traiter des fichiers en masse avec xargs<span class="lesson-duration">12 min</span></a>
+          <a href="../missions/processus-en-arriere-plan.html" class="lesson"><div class="lesson-check"></div>Lancer et suivre des tâches en arrière-plan<span class="lesson-duration">10 min</span></a>
+          <a href="../missions/sauvegarde-incrementale.html" class="lesson"><div class="lesson-check"></div>Sauvegardes incrémentales sans gaspiller d'espace<span class="lesson-duration">15 min</span></a>
+          <a href="../missions/creer-un-service-systemd.html" class="lesson"><div class="lesson-check"></div>🏆 Mission : transformer un script en service<span class="lesson-duration">30 min</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="module" id="mod-9">
+      <div class="module-header" onclick="toggleModule('mod-9')">
+        <div class="module-num">09</div>
+        <div class="module-info">
+          <div class="module-title">Traitement de données avancé</div>
+          <div class="module-meta"><span>6 leçons</span><span>~75 min</span></div>
+        </div>
+        <div class="module-status status-todo">À faire</div>
+      </div>
+      <div class="module-body">
+        <div class="module-desc">awk, sed, regex. Les outils qui transforment le terminal en couteau suisse du traitement de données.</div>
+        <div class="lessons">
+          <a href="../commandes/awk.html" class="lesson"><div class="lesson-check"></div>awk — traitement par colonnes<span class="lesson-duration">15 min</span></a>
+          <a href="../commandes/sed.html" class="lesson"><div class="lesson-check"></div>sed — édition en flux<span class="lesson-duration">12 min</span></a>
+          <a href="../commandes/grep.html" class="lesson"><div class="lesson-check"></div>Regex — les expressions régulières<span class="lesson-duration">15 min</span></a>
+          <a href="../missions/pipes-et-redirections.html" class="lesson"><div class="lesson-check"></div>Pipes avancés et substitution<span class="lesson-duration">10 min</span></a>
+          <a href="../missions/parser-du-json-avec-jq.html" class="lesson"><div class="lesson-check"></div>Traiter du CSV, JSON, logs<span class="lesson-duration">12 min</span></a>
+          <a href="../missions/xargs-traitement-en-masse.html" class="lesson"><div class="lesson-check"></div>One-liners mythiques<span class="lesson-duration">12 min</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="module" id="mod-10">
+      <div class="module-header" onclick="toggleModule('mod-10')">
+        <div class="module-num">10</div>
+        <div class="module-info">
+          <div class="module-title">Sécurité et administration</div>
+          <div class="module-meta"><span>7 leçons</span><span>~90 min</span></div>
+        </div>
+        <div class="module-status status-todo">À faire</div>
+      </div>
+      <div class="module-body">
+        <div class="module-desc">Sécuriser un serveur, surveiller des logs, détecter des intrusions. Ce que font les vrais sysadmins.</div>
+        <div class="lessons">
+          <a href="../missions/ssh-config-avance.html" class="lesson"><div class="lesson-check"></div>Durcir un serveur SSH<span class="lesson-duration">15 min</span></a>
+          <a href="../missions/firewall-avec-ufw.html" class="lesson"><div class="lesson-check"></div>Configurer un firewall (ufw, iptables)<span class="lesson-duration">15 min</span></a>
+          <a href="../missions/fail2ban-bloquer-attaques.html" class="lesson"><div class="lesson-check"></div>fail2ban — bloquer les attaques brute force<span class="lesson-duration">10 min</span></a>
+          <a href="../missions/analyser-les-logs.html" class="lesson"><div class="lesson-check"></div>Analyser des logs d'intrusion<span class="lesson-duration">15 min</span></a>
+          <a href="../missions/planifier-avec-cron.html" class="lesson"><div class="lesson-check"></div>Surveillance avec cron<span class="lesson-duration">10 min</span></a>
+          <a href="../missions/sauvegarde-automatique.html" class="lesson"><div class="lesson-check"></div>Backups automatisés<span class="lesson-duration">12 min</span></a>
+          <a href="../missions/audit-securite-serveur-neuf.html" class="lesson"><div class="lesson-check"></div>🏆 Mission : Sécuriser un VPS from scratch<span class="lesson-duration">90 min</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="ft-copy">© 2026 Terminal — Linux, c'est juste du bon sens.</div>
+  <a href="../index.html" class="ft-back">← Accueil</a>
+</footer>
+
+<script>
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-6+'px';cur.style.top=my-6+'px';});
+(function a(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx-18+'px';ring.style.top=ry-18+'px';requestAnimationFrame(a);})();
+document.querySelectorAll('a,button,.module').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2)';ring.style.borderColor='var(--accent)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';ring.style.borderColor='var(--ink)';});
+});
+
+function showLevel(level, btn){
+  document.querySelectorAll('.level-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.level-content').forEach(c=>c.classList.remove('show'));
+  btn.classList.add('active');
+  document.getElementById('level-'+level).classList.add('show');
+}
+
+function toggleModule(id){
+  const mod=document.getElementById(id);
+  mod.classList.toggle('open');
+}
+
+// Count done lessons
+const doneLessons=document.querySelectorAll('.lesson.done').length;
+const totalLessons=document.querySelectorAll('.lesson').length;
+document.getElementById('global-bar').style.width=(doneLessons/totalLessons*100)+'%';
+
+// Save progress in localStorage
+const saved=JSON.parse(localStorage.getItem('linux-progress')||'{}');
+</script>
+
+<script>
+function toggleMenu() {
+  var h = document.getElementById('hamburger');
+  var o = document.getElementById('mobile-overlay');
+  if (!h || !o) return;
+  h.classList.toggle('open');
+  o.classList.toggle('open');
+  document.body.style.overflow = o.classList.contains('open') ? 'hidden' : '';
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const total = document.querySelectorAll('.module-num').length;
+  const el = document.querySelector('[data-count="modules"]');
+  if (el && total) el.textContent = total;
+});
+</script>
+</body>
+</html>

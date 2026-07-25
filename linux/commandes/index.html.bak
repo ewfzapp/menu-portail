@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commandes Linux — Encyclopedia Terminal</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F0E8;--ink:#1A1208;--accent:#FF3D00;--green:#00C853;--blue:#0066FF;--surface:#EDE8DE;--border:rgba(26,18,8,0.12);--mono:'JetBrains Mono',monospace;--serif:'Crimson Pro',Georgia,serif;--display:'Bebas Neue',sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:12px;height:12px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:multiply;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--ink);border-radius:50%;pointer-events:none;z-index:9998;transition:all 0.15s ease;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 3rem;border-bottom:1px solid var(--border);background:rgba(245,240,232,0.92);backdrop-filter:blur(12px);}
+.nav-logo{font-family:var(--mono);font-size:13px;font-weight:700;}
+.nav-logo .p{color:var(--green);}
+.nav-blink{display:inline-block;width:8px;height:14px;background:var(--ink);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.nav-links{display:flex;gap:2rem;list-style:none;font-size:12px;font-family:var(--mono);}
+.nav-links a{color:var(--ink);text-decoration:none;opacity:0.45;transition:opacity 0.2s;}
+.nav-links a:hover,.nav-links a.active{opacity:1;}
+.nav-cta{font-family:var(--mono);font-size:12px;font-weight:700;background:var(--ink);color:var(--bg);padding:8px 20px;border-radius:3px;text-decoration:none;transition:background 0.2s;}
+.nav-cta:hover{background:var(--accent);}
+
+.hero{padding:8rem 3rem 4rem;background:var(--ink);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:var(--accent);opacity:0.04;filter:blur(100px);}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--green);margin-bottom:0.75rem;}
+.hero-title{font-family:var(--display);font-size:clamp(60px,9vw,140px);line-height:0.88;color:var(--bg);margin-bottom:1.5rem;}
+.hero-title em{color:var(--accent);font-style:normal;}
+.hero-desc{font-size:18px;font-weight:300;color:rgba(245,240,232,0.5);max-width:500px;line-height:1.7;margin-bottom:2rem;}
+
+.search-bar{display:flex;gap:0;max-width:600px;}
+.search-bar input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-right:none;border-radius:4px 0 0 4px;padding:14px 20px;font-family:var(--mono);font-size:14px;color:var(--bg);outline:none;transition:border-color 0.2s;}
+.search-bar input::placeholder{color:rgba(255,255,255,0.25);}
+.search-bar input:focus{border-color:var(--green);}
+.search-bar button{background:var(--green);color:var(--ink);border:none;padding:14px 24px;border-radius:0 4px 4px 0;font-family:var(--mono);font-size:13px;font-weight:700;cursor:none;transition:background 0.2s;}
+.search-bar button:hover{background:#00a846;}
+
+.stats-bar{display:flex;gap:3rem;padding:1.5rem 3rem;background:var(--surface);border-bottom:1px solid var(--border);}
+.stat{font-family:var(--mono);font-size:12px;letter-spacing:0.05em;}
+.stat-n{font-size:22px;font-weight:700;font-family:var(--display);color:var(--ink);margin-right:6px;}
+.stat-l{opacity:0.45;}
+
+.main{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 60px);}
+
+.sidebar{border-right:1px solid var(--border);padding:2rem 0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
+.sidebar-section{margin-bottom:0.25rem;}
+.sidebar-title{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.35;padding:0.75rem 1.5rem 0.4rem;}
+.sidebar-link{display:flex;align-items:center;gap:8px;padding:6px 1.5rem;font-family:var(--mono);font-size:12px;color:var(--ink);text-decoration:none;opacity:0.5;transition:all 0.15s;cursor:none;}
+.sidebar-link:hover,.sidebar-link.active{opacity:1;background:var(--surface);}
+.sidebar-link.active{border-left:2px solid var(--accent);padding-left:calc(1.5rem - 2px);}
+.sidebar-dot{width:6px;height:6px;border-radius:50%;background:var(--border);flex-shrink:0;}
+.sidebar-link.active .sidebar-dot{background:var(--accent);}
+
+.content{padding:3rem;}
+.category-section{margin-bottom:4rem;}
+.cat-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.5rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);}
+.cat-name{font-family:var(--display);font-size:36px;line-height:1;}
+.cat-count{font-family:var(--mono);font-size:11px;opacity:0.35;letter-spacing:0.08em;}
+
+.cmd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);}
+.cmd-item{background:var(--bg);padding:1.25rem;transition:all 0.2s;cursor:none;text-decoration:none;color:var(--ink);display:block;position:relative;overflow:hidden;}
+.cmd-item::before{content:'';position:absolute;inset:0;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform 0.25s cubic-bezier(0.4,0,0.2,1);z-index:0;}
+.cmd-item:hover::before{transform:scaleY(1);}
+.cmd-item>*{position:relative;z-index:1;}
+.cmd-item:hover .ci-name{color:var(--accent);}
+.cmd-item:hover .ci-desc{color:rgba(245,240,232,0.6);}
+.cmd-item:hover .ci-tag{background:rgba(255,255,255,0.08);color:rgba(245,240,232,0.4);}
+.cmd-item:hover .ci-arrow{opacity:1;transform:translateX(0);}
+.ci-name{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--ink);transition:color 0.25s;letter-spacing:-0.02em;margin-bottom:0.4rem;}
+.ci-desc{font-size:13px;font-weight:300;color:rgba(26,18,8,0.6);transition:color 0.25s;line-height:1.5;margin-bottom:0.75rem;}
+.ci-footer{display:flex;justify-content:space-between;align-items:center;}
+.ci-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;background:var(--surface);color:rgba(26,18,8,0.38);padding:2px 8px;border-radius:2px;transition:all 0.25s;}
+.ci-arrow{font-family:var(--mono);font-size:12px;opacity:0;transform:translateX(-8px);transition:all 0.25s;color:var(--green);}
+
+.no-results{text-align:center;padding:4rem;font-family:var(--mono);font-size:14px;opacity:0.35;display:none;}
+
+footer{background:var(--ink);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+.ft-copy{font-family:var(--mono);font-size:11px;color:rgba(245,240,232,0.18);}
+.ft-back{font-family:var(--mono);font-size:12px;color:rgba(245,240,232,0.4);text-decoration:none;transition:color 0.2s;}
+.ft-back:hover{color:var(--bg);}
+
+@media(max-width:768px){.main{grid-template-columns:1fr;}.sidebar{display:none;}.content{padding:2rem 1.5rem;}.stats-bar{gap:1.5rem;padding:1rem 1.5rem;}.hero{padding:7rem 1.5rem 3rem;}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="p">user@linux</span>:~$ <span class="nav-blink"></span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Commandes</a></li>
+    <li><a href="../missions/index.html">Missions</a></li>
+    <li><a href="../apprendre/index.html">Apprendre</a></li>
+    <li><a href="../cheatsheet.html">Cheatsheet</a></li>
+  </ul>
+  <a href="../missions/index.html" class="nav-cta">Pratiquer →</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Encyclopedia</div>
+  <h1 class="hero-title">TOUTES<br>LES <em>CMD</em></h1>
+  <p class="hero-desc">200+ commandes Linux expliquées en langage humain. Avec des exemples. Avec des analogies. Sans jargon inutile.</p>
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Chercher une commande... (ex: ls, grep, chmod)" oninput="filterCmds()">
+    <button onclick="filterCmds()">Chercher</button>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-n">42</span><span class="stat-l">commandes documentées</span></div>
+  <div class="stat"><span class="stat-n">8</span><span class="stat-l">catégories</span></div>
+  <div class="stat"><span class="stat-n">0</span><span class="stat-l">prérequis</span></div>
+</div>
+
+<div class="main">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Catégories</div>
+      <a href="#nav" class="sidebar-link active"><div class="sidebar-dot"></div>Navigation</a>
+      <a href="#fichiers" class="sidebar-link"><div class="sidebar-dot"></div>Fichiers</a>
+      <a href="#recherche" class="sidebar-link"><div class="sidebar-dot"></div>Recherche</a>
+      <a href="#reseau" class="sidebar-link"><div class="sidebar-dot"></div>Réseau</a>
+      <a href="#processus" class="sidebar-link"><div class="sidebar-dot"></div>Processus</a>
+      <a href="#permissions" class="sidebar-link"><div class="sidebar-dot"></div>Permissions</a>
+      <a href="#texte" class="sidebar-link"><div class="sidebar-dot"></div>Texte</a>
+      <a href="#systeme" class="sidebar-link"><div class="sidebar-dot"></div>Système</a>
+    </div>
+  </aside>
+
+  <main class="content" id="content">
+    <div class="no-results" id="no-results">Aucune commande trouvée pour "<span id="search-term"></span>"</div>
+
+    <!-- Navigation -->
+    <div class="category-section" id="nav" data-cat="Navigation">
+      <div class="cat-header">
+        <div class="cat-name">Navigation</div>
+        <div class="cat-count">5 commandes</div>
+      </div>
+      <div class="cmd-grid">
+        <a href="ls.html" class="cmd-item" data-cmd="ls" data-desc="lister contenu dossier">
+          <div class="ci-name">ls</div>
+          <div class="ci-desc">Liste le contenu d'un dossier. La commande qu'on tape 100 fois par jour.</div>
+          <div class="ci-footer"><span class="ci-tag">navigation</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="cd.html" class="cmd-item" data-cmd="cd" data-desc="changer dossier répertoire">
+          <div class="ci-name">cd</div>
+          <div class="ci-desc">Change de répertoire. Se déplacer dans l'arborescence de fichiers.</div>
+          <div class="ci-footer"><span class="ci-tag">navigation</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="pwd.html" class="cmd-item" data-cmd="pwd" data-desc="afficher chemin répertoire courant">
+          <div class="ci-name">pwd</div>
+          <div class="ci-desc">Affiche le chemin complet du dossier courant. "Où suis-je ?"</div>
+          <div class="ci-footer"><span class="ci-tag">navigation</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="tree.html" class="cmd-item" data-cmd="tree" data-desc="afficher arborescence dossiers">
+          <div class="ci-name">tree</div>
+          <div class="ci-desc">Affiche l'arborescence complète sous forme d'arbre visuel.</div>
+          <div class="ci-footer"><span class="ci-tag">navigation</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="pushd.html" class="cmd-item" data-cmd="pushd" data-desc="empiler répertoires navigation">
+          <div class="ci-name">pushd</div>
+          <div class="ci-desc">Change de dossier en mémorisant le précédent. Comme un historique de navigation.</div>
+          <div class="ci-footer"><span class="ci-tag">navigation</span><span class="ci-arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Fichiers -->
+    <div class="category-section" id="fichiers" data-cat="Fichiers">
+      <div class="cat-header">
+        <div class="cat-name">Fichiers</div>
+        <div class="cat-count">8 commandes</div>
+      </div>
+      <div class="cmd-grid">
+        <a href="cp.html" class="cmd-item" data-cmd="cp" data-desc="copier fichier">
+          <div class="ci-name">cp</div>
+          <div class="ci-desc">Copie des fichiers ou des dossiers. Comme Ctrl+C / Ctrl+V mais en mieux.</div>
+          <div class="ci-footer"><span class="ci-tag">fichiers</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="mv.html" class="cmd-item" data-cmd="mv" data-desc="déplacer renommer fichier">
+          <div class="ci-name">mv</div>
+          <div class="ci-desc">Déplace ou renomme des fichiers. La commande couteau suisse des fichiers.</div>
+          <div class="ci-footer"><span class="ci-tag">fichiers</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="rm.html" class="cmd-item" data-cmd="rm" data-desc="supprimer fichier">
+          <div class="ci-name">rm</div>
+          <div class="ci-desc">Supprime des fichiers. Attention : pas de corbeille, pas de retour arrière.</div>
+          <div class="ci-footer"><span class="ci-tag">fichiers ⚠️</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="mkdir.html" class="cmd-item" data-cmd="mkdir" data-desc="créer dossier répertoire">
+          <div class="ci-name">mkdir</div>
+          <div class="ci-desc">Crée un nouveau dossier. Avec -p, crée toute l'arborescence d'un coup.</div>
+          <div class="ci-footer"><span class="ci-tag">fichiers</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="touch.html" class="cmd-item" data-cmd="touch" data-desc="créer fichier vide">
+          <div class="ci-name">touch</div>
+          <div class="ci-desc">Crée un fichier vide ou met à jour sa date de modification.</div>
+          <div class="ci-footer"><span class="ci-tag">fichiers</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="cat.html" class="cmd-item" data-cmd="cat" data-desc="afficher contenu fichier">
+          <div class="ci-name">cat</div>
+          <div class="ci-desc">Affiche le contenu d'un fichier dans le terminal. Simple et efficace.</div>
+          <div class="ci-footer"><span class="ci-tag">fichiers</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="less.html" class="cmd-item" data-cmd="less" data-desc="lire fichier paginer">
+          <div class="ci-name">less</div>
+          <div class="ci-desc">Lit un fichier page par page. Mieux que cat pour les gros fichiers.</div>
+          <div class="ci-footer"><span class="ci-tag">fichiers</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="ln.html" class="cmd-item" data-cmd="ln" data-desc="créer lien symbolique">
+          <div class="ci-name">ln</div>
+          <div class="ci-desc">Crée un lien symbolique. Comme un raccourci, mais vraiment puissant.</div>
+          <div class="ci-footer"><span class="ci-tag">fichiers</span><span class="ci-arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Recherche -->
+    <div class="category-section" id="recherche" data-cat="Recherche">
+      <div class="cat-header">
+        <div class="cat-name">Recherche</div>
+        <div class="cat-count">5 commandes</div>
+      </div>
+      <div class="cmd-grid">
+        <a href="grep.html" class="cmd-item" data-cmd="grep" data-desc="chercher texte fichier pattern">
+          <div class="ci-name">grep</div>
+          <div class="ci-desc">Cherche du texte dans des fichiers. Le Ctrl+F surpuissant du terminal.</div>
+          <div class="ci-footer"><span class="ci-tag">recherche</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="find.html" class="cmd-item" data-cmd="find" data-desc="trouver fichier chercher">
+          <div class="ci-name">find</div>
+          <div class="ci-desc">Trouve des fichiers selon plein de critères : nom, taille, date, permissions...</div>
+          <div class="ci-footer"><span class="ci-tag">recherche</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="locate.html" class="cmd-item" data-cmd="locate" data-desc="localiser fichier rapide">
+          <div class="ci-name">locate</div>
+          <div class="ci-desc">Trouve des fichiers instantanément grâce à un index. Plus rapide que find.</div>
+          <div class="ci-footer"><span class="ci-tag">recherche</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="which.html" class="cmd-item" data-cmd="which" data-desc="trouver chemin commande programme">
+          <div class="ci-name">which</div>
+          <div class="ci-desc">Trouve où se trouve un programme installé sur le système.</div>
+          <div class="ci-footer"><span class="ci-tag">recherche</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="ag.html" class="cmd-item" data-cmd="ag" data-desc="chercher code rapide silver searcher">
+          <div class="ci-name">ag</div>
+          <div class="ci-desc">Le Silver Searcher. Comme grep mais 10x plus rapide pour chercher dans du code.</div>
+          <div class="ci-footer"><span class="ci-tag">recherche</span><span class="ci-arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Réseau -->
+    <div class="category-section" id="reseau" data-cat="Réseau">
+      <div class="cat-header">
+        <div class="cat-name">Réseau</div>
+        <div class="cat-count">6 commandes</div>
+      </div>
+      <div class="cmd-grid">
+        <a href="ssh.html" class="cmd-item" data-cmd="ssh" data-desc="connexion distante sécurisée serveur">
+          <div class="ci-name">ssh</div>
+          <div class="ci-desc">Se connecte à distance sur un autre ordinateur de manière sécurisée.</div>
+          <div class="ci-footer"><span class="ci-tag">réseau</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="scp.html" class="cmd-item" data-cmd="scp" data-desc="copier fichier réseau distant">
+          <div class="ci-name">scp</div>
+          <div class="ci-desc">Copie des fichiers entre machines via SSH. Comme cp mais sur le réseau.</div>
+          <div class="ci-footer"><span class="ci-tag">réseau</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="curl.html" class="cmd-item" data-cmd="curl" data-desc="télécharger url requête http api">
+          <div class="ci-name">curl</div>
+          <div class="ci-desc">Fait des requêtes HTTP, télécharge des fichiers, teste des APIs.</div>
+          <div class="ci-footer"><span class="ci-tag">réseau</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="ping.html" class="cmd-item" data-cmd="ping" data-desc="tester connectivité réseau">
+          <div class="ci-name">ping</div>
+          <div class="ci-desc">Vérifie si une machine est accessible sur le réseau. Envoie des petits paquets.</div>
+          <div class="ci-footer"><span class="ci-tag">réseau</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="netstat.html" class="cmd-item" data-cmd="netstat" data-desc="connexions réseau ports">
+          <div class="ci-name">netstat</div>
+          <div class="ci-desc">Affiche les connexions réseau actives et les ports ouverts sur le système.</div>
+          <div class="ci-footer"><span class="ci-tag">réseau</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="rsync.html" class="cmd-item" data-cmd="rsync" data-desc="synchroniser fichiers sauvegarde">
+          <div class="ci-name">rsync</div>
+          <div class="ci-desc">Synchronise des fichiers localement ou à distance. La commande de sauvegarde ultime.</div>
+          <div class="ci-footer"><span class="ci-tag">réseau</span><span class="ci-arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Processus -->
+    <div class="category-section" id="processus" data-cat="Processus">
+      <div class="cat-header">
+        <div class="cat-name">Processus</div>
+        <div class="cat-count">5 commandes</div>
+      </div>
+      <div class="cmd-grid">
+        <a href="ps.html" class="cmd-item" data-cmd="ps" data-desc="afficher processus liste">
+          <div class="ci-name">ps</div>
+          <div class="ci-desc">Liste les processus en cours. Le Gestionnaire des tâches du terminal.</div>
+          <div class="ci-footer"><span class="ci-tag">processus</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="top.html" class="cmd-item" data-cmd="top" data-desc="moniteur processus cpu mémoire">
+          <div class="ci-name">top</div>
+          <div class="ci-desc">Moniteur en temps réel : processus, CPU, mémoire. Se met à jour en direct.</div>
+          <div class="ci-footer"><span class="ci-tag">processus</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="kill.html" class="cmd-item" data-cmd="kill" data-desc="tuer arrêter processus">
+          <div class="ci-name">kill</div>
+          <div class="ci-desc">Envoie un signal à un processus. Souvent utilisé pour l'arrêter.</div>
+          <div class="ci-footer"><span class="ci-tag">processus ⚠️</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="htop.html" class="cmd-item" data-cmd="htop" data-desc="moniteur processus interactif couleur">
+          <div class="ci-name">htop</div>
+          <div class="ci-desc">Comme top mais en couleur et interactif. La version moderne et fun.</div>
+          <div class="ci-footer"><span class="ci-tag">processus</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="nohup.html" class="cmd-item" data-cmd="nohup" data-desc="lancer processus background arrière-plan">
+          <div class="ci-name">nohup</div>
+          <div class="ci-desc">Lance un processus qui continue même après la fermeture du terminal.</div>
+          <div class="ci-footer"><span class="ci-tag">processus</span><span class="ci-arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Permissions -->
+    <div class="category-section" id="permissions" data-cat="Permissions">
+      <div class="cat-header">
+        <div class="cat-name">Permissions</div>
+        <div class="cat-count">4 commandes</div>
+      </div>
+      <div class="cmd-grid">
+        <a href="chmod.html" class="cmd-item" data-cmd="chmod" data-desc="modifier permissions fichier">
+          <div class="ci-name">chmod</div>
+          <div class="ci-desc">Modifie les permissions d'un fichier. Qui peut lire, écrire, exécuter.</div>
+          <div class="ci-footer"><span class="ci-tag">permissions</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="chown.html" class="cmd-item" data-cmd="chown" data-desc="changer propriétaire fichier">
+          <div class="ci-name">chown</div>
+          <div class="ci-desc">Change le propriétaire d'un fichier ou dossier.</div>
+          <div class="ci-footer"><span class="ci-tag">permissions</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="sudo.html" class="cmd-item" data-cmd="sudo" data-desc="super utilisateur admin root">
+          <div class="ci-name">sudo</div>
+          <div class="ci-desc">Exécute une commande avec les privilèges administrateur. Avec grand pouvoir...</div>
+          <div class="ci-footer"><span class="ci-tag">permissions ⚠️</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="su.html" class="cmd-item" data-cmd="su" data-desc="changer utilisateur root">
+          <div class="ci-name">su</div>
+          <div class="ci-desc">Change d'utilisateur dans la session terminal courante.</div>
+          <div class="ci-footer"><span class="ci-tag">permissions</span><span class="ci-arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Texte -->
+    <div class="category-section" id="texte" data-cat="Texte">
+      <div class="cat-header">
+        <div class="cat-name">Texte</div>
+        <div class="cat-count">5 commandes</div>
+      </div>
+      <div class="cmd-grid">
+        <a href="awk.html" class="cmd-item" data-cmd="awk" data-desc="traiter texte colonnes données">
+          <div class="ci-name">awk</div>
+          <div class="ci-desc">Traite du texte colonne par colonne. Un mini-langage de programmation pour les données.</div>
+          <div class="ci-footer"><span class="ci-tag">texte</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="sed.html" class="cmd-item" data-cmd="sed" data-desc="éditer flux texte remplacer">
+          <div class="ci-name">sed</div>
+          <div class="ci-desc">Édite du texte en flux. Cherche/remplace ultra-puissant sur des fichiers entiers.</div>
+          <div class="ci-footer"><span class="ci-tag">texte</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="sort.html" class="cmd-item" data-cmd="sort" data-desc="trier lignes fichier texte">
+          <div class="ci-name">sort</div>
+          <div class="ci-desc">Trie les lignes d'un fichier ou d'une entrée. Alphabétique, numérique, inverse...</div>
+          <div class="ci-footer"><span class="ci-tag">texte</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="cut.html" class="cmd-item" data-cmd="cut" data-desc="extraire colonnes champs texte">
+          <div class="ci-name">cut</div>
+          <div class="ci-desc">Extrait des colonnes ou des champs d'un texte. Parfait pour les CSV.</div>
+          <div class="ci-footer"><span class="ci-tag">texte</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="wc.html" class="cmd-item" data-cmd="wc" data-desc="compter mots lignes caractères">
+          <div class="ci-name">wc</div>
+          <div class="ci-desc">Compte les mots, lignes et caractères d'un fichier ou d'une entrée.</div>
+          <div class="ci-footer"><span class="ci-tag">texte</span><span class="ci-arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Système -->
+    <div class="category-section" id="systeme" data-cat="Système">
+      <div class="cat-header">
+        <div class="cat-name">Système</div>
+        <div class="cat-count">4 commandes</div>
+      </div>
+      <div class="cmd-grid">
+        <a href="df.html" class="cmd-item" data-cmd="df" data-desc="espace disque partitions">
+          <div class="ci-name">df</div>
+          <div class="ci-desc">Affiche l'espace disque disponible sur chaque partition montée.</div>
+          <div class="ci-footer"><span class="ci-tag">système</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="du.html" class="cmd-item" data-cmd="du" data-desc="taille dossier fichier espace">
+          <div class="ci-name">du</div>
+          <div class="ci-desc">Mesure la taille qu'occupent des fichiers ou dossiers sur le disque.</div>
+          <div class="ci-footer"><span class="ci-tag">système</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="cron.html" class="cmd-item" data-cmd="cron" data-desc="planifier tâche automatique">
+          <div class="ci-name">cron</div>
+          <div class="ci-desc">Planifie des tâches automatiques. Lance des scripts à heure fixe.</div>
+          <div class="ci-footer"><span class="ci-tag">système</span><span class="ci-arrow">→</span></div>
+        </a>
+        <a href="uname.html" class="cmd-item" data-cmd="uname" data-desc="informations système noyau">
+          <div class="ci-name">uname</div>
+          <div class="ci-desc">Affiche des informations sur le système : noyau, architecture, hostname...</div>
+          <div class="ci-footer"><span class="ci-tag">système</span><span class="ci-arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="ft-copy">© 2026 Terminal — Linux, c'est juste du bon sens.</div>
+  <a href="../index.html" class="ft-back">← Retour à l'accueil</a>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-6+'px';cur.style.top=my-6+'px';});
+(function a(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx-18+'px';ring.style.top=ry-18+'px';requestAnimationFrame(a);})();
+document.querySelectorAll('a,button,.cmd-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2)';ring.style.borderColor='var(--accent)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';ring.style.borderColor='var(--ink)';});
+});
+
+// Search
+function filterCmds(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  const items=document.querySelectorAll('.cmd-item');
+  const sections=document.querySelectorAll('.category-section');
+  let found=0;
+  if(!q){items.forEach(i=>i.style.display='');sections.forEach(s=>s.style.display='');document.getElementById('no-results').style.display='none';return;}
+  sections.forEach(s=>{
+    let vis=0;
+    s.querySelectorAll('.cmd-item').forEach(i=>{
+      const match=i.dataset.cmd.includes(q)||i.dataset.desc.includes(q)||i.querySelector('.ci-desc').textContent.toLowerCase().includes(q);
+      i.style.display=match?'':'none';
+      if(match){vis++;found++;}
+    });
+    s.style.display=vis?'':'none';
+  });
+  const nr=document.getElementById('no-results');
+  document.getElementById('search-term').textContent=q;
+  nr.style.display=found?'none':'block';
+}
+
+// Sidebar active on scroll
+const sections=document.querySelectorAll('.category-section');
+const links=document.querySelectorAll('.sidebar-link');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-200)cur=s.id;});
+  links.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+cur);});
+});
+</script>
+</body>
+</html>

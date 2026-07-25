@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://docker.khassam.fr/sitemap.xml
+
+User-agent: Googlebot
+Allow: /

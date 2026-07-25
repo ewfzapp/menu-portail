@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missions Docker — Apprendre par la pratique | docker.khassam.fr</title>
+<meta name="description" content="40 missions pratiques Docker : lancer un conteneur, dockeriser une app, stack WordPress, CI/CD. Apprendre Docker par la pratique.">
+<link rel="canonical" href="https://docker.khassam.fr/missions/">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805732481707409" crossorigin="anonymous"></script>
+<style>
+:root{--bg:#F0F4F8;--ink:#0D1B2A;--accent:#0066FF;--whale:#00ADEF;--green:#00C853;--orange:#FF6B35;--surface:#E2E8F0;--border:rgba(13,27,42,0.1);--mono:'JetBrains Mono',monospace;--serif:'Crimson Pro',Georgia,serif;--display:'Bebas Neue',sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:12px;height:12px;background:var(--whale);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.1s;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--ink);border-radius:50%;pointer-events:none;z-index:9998;transition:all 0.15s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 3rem;border-bottom:1px solid var(--border);background:rgba(240,244,248,0.92);backdrop-filter:blur(12px);}
+.nav-logo{font-family:var(--mono);font-size:13px;font-weight:700;text-decoration:none;color:var(--ink);}
+.p{color:var(--whale);}
+.nb{display:inline-block;width:8px;height:14px;background:var(--ink);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.nav-links{display:flex;gap:1.5rem;list-style:none;font-size:12px;font-family:var(--mono);}
+.nav-links a{color:var(--ink);text-decoration:none;opacity:0.5;transition:opacity 0.2s;}
+.nav-links a:hover{opacity:1;}
+.nav-drop{position:relative;}
+.drop-menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:10px;z-index:500;}
+.drop-menu-inner{background:var(--ink);border-radius:8px;padding:0.5rem;min-width:200px;box-shadow:0 20px 40px rgba(13,27,42,0.25);position:relative;}
+.drop-menu-inner::before{content:'';position:absolute;top:-5px;left:50%;transform:translateX(-50%);border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid var(--ink);}
+.drop-menu a{display:block;padding:8px 14px;border-radius:4px;font-family:var(--mono);font-size:12px;color:rgba(240,244,248,0.7)!important;text-decoration:none;transition:all 0.15s;white-space:nowrap;}
+.drop-menu a:hover{background:rgba(255,255,255,0.08);color:#fff!important;}
+.nav-drop:hover .drop-menu{display:block;}
+.hamburger{display:none;flex-direction:column;gap:6px;cursor:pointer;background:none;border:none;padding:8px;z-index:1000;}
+.hamburger span{display:block;width:26px;height:2px;background:var(--ink);border-radius:2px;transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+.mobile-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#0D1B2A;z-index:99999;overflow-y:auto;padding:80px 0 40px;flex-direction:column;}
+.mobile-overlay.open{display:flex!important;}
+.mobile-overlay a{font-family:var(--mono);font-size:20px;color:rgba(240,244,248,0.75);text-decoration:none;padding:18px 32px;border-bottom:1px solid rgba(255,255,255,0.07);display:block;}
+.mob-close{font-size:14px;color:rgba(240,244,248,0.3)!important;text-align:center;border:none!important;}
+@media(max-width:900px){.hamburger{display:flex!important;}.nav-links{display:none!important;}nav{padding:1rem 1.5rem;}}
+footer{background:var(--ink);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.ft-copy{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.18);}
+.ft-links{display:flex;gap:1.5rem;}
+.ft-link{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;}
+.ft-link:hover{color:#fff;}
+</style>
+<style>
+.hero{padding:8rem 3rem 5rem;background:var(--ink);position:relative;overflow:hidden;}
+.hero::after{content:'MISSION';position:absolute;right:-1rem;bottom:-2rem;font-family:var(--display);font-size:clamp(80px,14vw,200px);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.03);pointer-events:none;}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--whale);margin-bottom:0.75rem;}
+.hero-title{font-family:var(--display);font-size:clamp(60px,10vw,130px);line-height:0.88;color:#fff;margin-bottom:1rem;}
+.hero-desc{font-size:18px;font-weight:300;color:rgba(255,255,255,0.5);max-width:540px;line-height:1.7;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2px;background:var(--border);padding:3rem;}
+.card{background:var(--bg);padding:2rem;text-decoration:none;color:var(--ink);display:block;position:relative;overflow:hidden;transition:all 0.2s;cursor:none;}
+.card::before{content:'';position:absolute;inset:0;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);}
+.card>*{position:relative;z-index:1;}
+.card:hover::before{transform:scaleY(1);}
+.card:hover .c-title{color:var(--whale);}
+.card:hover .c-desc{color:rgba(255,255,255,0.5);}
+.c-num{font-family:var(--display);font-size:56px;line-height:1;color:rgba(13,27,42,0.08);margin-bottom:-0.5rem;transition:color 0.3s;}
+.card:hover .c-num{color:rgba(255,255,255,0.05);}
+.c-level{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:2px;display:inline-block;margin-bottom:0.5rem;}
+.lv-d{background:rgba(0,200,83,0.1);color:var(--green);}
+.lv-i{background:rgba(0,173,239,0.1);color:var(--whale);}
+.lv-a{background:rgba(255,107,53,0.1);color:var(--orange);}
+.c-title{font-family:var(--display);font-size:28px;line-height:1;margin-bottom:0.5rem;transition:color 0.3s;}
+.c-desc{font-size:14px;font-weight:300;color:rgba(13,27,42,0.55);line-height:1.6;transition:color 0.3s;}
+@media(max-width:768px){.grid{grid-template-columns:1fr;padding:1.5rem;}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<nav>
+  <a href="../index.html" class="nav-logo">🐋 <span class="p">docker</span>.khassam.fr <span class="nb"></span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Accueil</a></li>
+    <li class="nav-drop"><a href="../commandes/index.html">Commandes ▾</a>
+      <div class="drop-menu"><div class="drop-menu-inner">
+        <a href="../commandes/index.html">Toutes les commandes</a>
+        <a href="../commandes/docker-run.html">docker run</a>
+        <a href="../commandes/docker-compose.html">docker compose</a>
+        <a href="../commandes/docker-build.html">docker build</a>
+        <a href="../commandes/docker-network.html">docker network</a>
+        <a href="../commandes/docker-volume.html">docker volume</a>
+      </div></div>
+    </li>
+    <li><a href="../missions/index.html">Missions</a></li>
+    <li><a href="../quelle-commande.html">🔍 Quelle commande ?</a></li>
+    <li><a href="../quiz.html">Quiz</a></li>
+    <li><a href="../cheatsheet.html">Cheatsheet</a></li>
+    <li><a href="https://linux.khassam.fr" target="_blank">Linux →</a></li>
+    <li><a href="https://khassam.fr" target="_blank">Blog</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-overlay" id="mobile-overlay">
+  <a href="../index.html" onclick="toggleMenu()">🏠 Accueil</a>
+  <a href="../commandes/index.html" onclick="toggleMenu()">📦 Commandes</a>
+  <a href="../missions/index.html" onclick="toggleMenu()">🎯 Missions</a>
+  <a href="../quelle-commande.html" onclick="toggleMenu()">🔍 Quelle commande ?</a>
+  <a href="../quiz.html" onclick="toggleMenu()">🧠 Quiz</a>
+  <a href="../cheatsheet.html" onclick="toggleMenu()">⚡ Cheatsheet</a>
+  <a href="https://linux.khassam.fr" target="_blank" onclick="toggleMenu()">🐧 Linux →</a>
+  <a href="https://khassam.fr" target="_blank" onclick="toggleMenu()">✍️ Blog</a>
+  <a href="#" class="mob-close" onclick="toggleMenu()">✕ Fermer</a>
+</div>
+<div class="hero">
+  <div class="hero-eyebrow">Apprendre par la pratique</div>
+  <h1 class="hero-title">LES<br>MISSIONS</h1>
+  <p class="hero-desc">Des scénarios réels. Tu apprends Docker en faisant exactement ce que font les vrais DevOps.</p>
+</div>
+<div class="grid">
+  <a href="premier-conteneur.html" class="card"><div class="c-num">01</div><span class="c-level lv-d">Débutant</span><div class="c-title">Ton premier conteneur</div><div class="c-desc">Lance nginx en 2 minutes. Ports, détachement, noms — les bases absolues.</div></a>
+  <a href="images-et-tags.html" class="card"><div class="c-num">02</div><span class="c-level lv-d">Débutant</span><div class="c-title">Images et tags</div><div class="c-desc">Lister, comprendre les tags, nettoyer sans risque.</div></a>
+  <a href="volumes-persistance.html" class="card"><div class="c-num">03</div><span class="c-level lv-d">Débutant</span><div class="c-title">Volumes et persistance</div><div class="c-desc">Ne plus jamais perdre de données à cause d'un docker rm.</div></a>
+  <a href="reseaux-conteneurs.html" class="card"><div class="c-num">04</div><span class="c-level lv-d">Débutant</span><div class="c-title">Réseaux entre conteneurs</div><div class="c-desc">Faire communiquer deux conteneurs par leur nom, pas par IP.</div></a>
+  <a href="variables-environnement.html" class="card"><div class="c-num">05</div><span class="c-level lv-d">Débutant</span><div class="c-title">Variables d'environnement</div><div class="c-desc">Configurer un conteneur sans reconstruire l'image.</div></a>
+  <a href="dockerfile-premiers-pas.html" class="card"><div class="c-num">06</div><span class="c-level lv-d">Débutant</span><div class="c-title">Premier Dockerfile</div><div class="c-desc">De ton script Python à une image, en 4 étapes.</div></a>
+  <a href="build-image-personnalisee.html" class="card"><div class="c-num">07</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Construire une image sur mesure</div><div class="c-desc">Dockerfile propre pour une app Node.js, .dockerignore, npm ci.</div></a>
+  <a href="app-node.html" class="card"><div class="c-num">08</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Dockeriser une app Node.js</div><div class="c-desc">Écrire un Dockerfile, construire une image, la lancer en production.</div></a>
+  <a href="stack-wordpress.html" class="card"><div class="c-num">09</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Stack WordPress + MySQL</div><div class="c-desc">Orchestrer deux conteneurs qui communiquent avec Docker Compose.</div></a>
+  <a href="multi-stage-build.html" class="card"><div class="c-num">10</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Build multi-stage</div><div class="c-desc">Réduire une image de 900 Mo à 90 Mo.</div></a>
+  <a href="optimiser-image-taille.html" class="card"><div class="c-num">11</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Optimiser la taille d'une image</div><div class="c-desc">Chasser les couches inutiles avec docker history.</div></a>
+  <a href="compose-multi-services.html" class="card"><div class="c-num">12</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Stack multi-services</div><div class="c-desc">Orchestrer 3 services avec Docker Compose.</div></a>
+  <a href="compose-healthcheck.html" class="card"><div class="c-num">13</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Healthchecks et disponibilité</div><div class="c-desc">Attendre qu'un service soit vraiment prêt.</div></a>
+  <a href="stack-lemp.html" class="card"><div class="c-num">14</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Stack LEMP complète</div><div class="c-desc">Nginx, PHP-FPM et MySQL ensemble.</div></a>
+  <a href="stack-node-postgres.html" class="card"><div class="c-num">15</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Stack Node.js + PostgreSQL</div><div class="c-desc">API REST connectée à sa base de données.</div></a>
+<a href="stack-redis-cache.html" class="card"><div class="c-num">16</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Cache Redis devant une API</div><div class="c-desc">Soulager la base et accélérer les réponses.</div></a>
+  <a href="reverse-proxy-nginx.html" class="card"><div class="c-num">17</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Reverse proxy avec Nginx</div><div class="c-desc">Exposer plusieurs apps derrière un seul point d'entrée.</div></a>
+  <a href="https-letsencrypt.html" class="card"><div class="c-num">18</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">HTTPS automatique</div><div class="c-desc">Certificats Let's Encrypt gratuits et renouvelés.</div></a>
+  <a href="reverse-proxy-traefik.html" class="card"><div class="c-num">19</div><span class="c-level lv-a">Avancé</span><div class="c-title">Reverse proxy avec Traefik</div><div class="c-desc">HTTPS automatique via labels Docker.</div></a>
+  <a href="registre-prive.html" class="card"><div class="c-num">20</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Registre d'images privé</div><div class="c-desc">Héberger son propre Docker Hub personnel.</div></a>
+  <a href="utilisateur-non-root.html" class="card"><div class="c-num">21</div><span class="c-level lv-a">Avancé</span><div class="c-title">Conteneur en non-root</div><div class="c-desc">Réduire la surface d'attaque d'un conteneur.</div></a>
+<a href="gerer-secrets-docker.html" class="card"><div class="c-num">22</div><span class="c-level lv-a">Avancé</span><div class="c-title">Gérer des secrets Docker</div><div class="c-desc">Des mots de passe qui ne traînent pas en clair.</div></a>
+  <a href="scanner-vulnerabilites.html" class="card"><div class="c-num">23</div><span class="c-level lv-a">Avancé</span><div class="c-title">Scanner les vulnérabilités</div><div class="c-desc">Trouver les failles connues avant les autres.</div></a>
+  <a href="ci-cd-github-actions.html" class="card"><div class="c-num">24</div><span class="c-level lv-a">Avancé</span><div class="c-title">CI/CD avec GitHub Actions</div><div class="c-desc">Build et push automatique à chaque commit.</div></a>
+  <a href="politique-redemarrage.html" class="card"><div class="c-num">25</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Politiques de redémarrage</div><div class="c-desc">Des conteneurs qui se relèvent tout seuls.</div></a>
+  <a href="logs-centralises.html" class="card"><div class="c-num">26</div><span class="c-level lv-a">Avancé</span><div class="c-title">Centraliser les logs</div><div class="c-desc">Ne plus se noyer dans docker logs.</div></a>
+  <a href="limiter-ressources.html" class="card"><div class="c-num">27</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Limiter CPU et mémoire</div><div class="c-desc">Empêcher un conteneur d'affamer les autres.</div></a>
+<a href="sauvegarder-volume.html" class="card"><div class="c-num">28</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Sauvegarder un volume</div><div class="c-desc">Exporter les données sans arrêter le service.</div></a>
+  <a href="restaurer-volume.html" class="card"><div class="c-num">29</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Restaurer un volume</div><div class="c-desc">La sauvegarde ne vaut que si elle se restaure.</div></a>
+  <a href="debug-conteneur-plante.html" class="card"><div class="c-num">30</div><span class="c-level lv-a">Avancé</span><div class="c-title">Débugger un crash en boucle</div><div class="c-desc">Méthode pour diagnostiquer un restart loop.</div></a>
+  <a href="monitoring-cadvisor.html" class="card"><div class="c-num">31</div><span class="c-level lv-a">Avancé</span><div class="c-title">Monitorer avec cAdvisor</div><div class="c-desc">Un tableau de bord pour tes conteneurs.</div></a>
+  <a href="stack-prometheus-grafana.html" class="card"><div class="c-num">32</div><span class="c-level lv-a">Avancé</span><div class="c-title">Stack Prometheus + Grafana</div><div class="c-desc">Historique long terme et dashboards.</div></a>
+  <a href="image-multi-architecture.html" class="card"><div class="c-num">33</div><span class="c-level lv-a">Avancé</span><div class="c-title">Image multi-architecture</div><div class="c-desc">Une image compatible ARM et x86.</div></a>
+<a href="conteneur-cron-jobs.html" class="card"><div class="c-num">34</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Tâches planifiées (cron)</div><div class="c-desc">Des tâches versionnées avec ta stack.</div></a>
+  <a href="docker-in-docker.html" class="card"><div class="c-num">35</div><span class="c-level lv-a">Avancé</span><div class="c-title">Docker-in-Docker pour la CI</div><div class="c-desc">Deux façons de donner Docker à un conteneur.</div></a>
+  <a href="securiser-docker-socket.html" class="card"><div class="c-num">36</div><span class="c-level lv-a">Avancé</span><div class="c-title">Sécuriser le socket Docker</div><div class="c-desc">Le socket Docker, ce sont les clés du serveur.</div></a>
+  <a href="stack-mern.html" class="card"><div class="c-num">37</div><span class="c-level lv-a">Avancé</span><div class="c-title">Stack MERN complète</div><div class="c-desc">MongoDB, Express, React, Node ensemble.</div></a>
+  <a href="nettoyage-automatise.html" class="card"><div class="c-num">38</div><span class="c-level lv-i">Intermédiaire</span><div class="c-title">Nettoyage automatisé</div><div class="c-desc">Un homelab qui se nettoie tout seul.</div></a>
+  <a href="migrer-conteneur-serveur.html" class="card"><div class="c-num">39</div><span class="c-level lv-a">Avancé</span><div class="c-title">Migrer vers un nouveau serveur</div><div class="c-desc">Changer de serveur sans tout recasser.</div></a>
+  <a href="sauver-serveur-crise.html" class="card"><div class="c-num">40</div><span class="c-level lv-a">Avancé</span><div class="c-title">Synthèse — Sauver un serveur en crise</div><div class="c-desc">Méthode complète de diagnostic en 6 étapes.</div></a>
+        </div>
+<footer>
+  <div class="ft-copy">© 2026 docker.khassam.fr · La référence Docker en français</div>
+  <div class="ft-links">
+    <a href="../index.html" class="ft-link">Accueil</a>
+    <a href="../commandes/index.html" class="ft-link">Commandes</a>
+    <a href="../cheatsheet.html" class="ft-link">Cheatsheet</a>
+    <a href="https://linux.khassam.fr" class="ft-link" target="_blank">Linux →</a>
+    <a href="https://khassam.fr" class="ft-link" target="_blank">Blog</a>
+  </div>
+</footer>
+<script>
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-6+'px';cur.style.top=my-6+'px';});
+(function a(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx-18+'px';ring.style.top=ry-18+'px';requestAnimationFrame(a);})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2)';ring.style.borderColor='var(--whale)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';ring.style.borderColor='var(--ink)';});
+});
+function toggleMenu(){var h=document.getElementById('hamburger');var o=document.getElementById('mobile-overlay');if(!h||!o)return;h.classList.toggle('open');o.classList.toggle('open');document.body.style.overflow=o.classList.contains('open')?'hidden':'';}
+</script>
+</body></html>
